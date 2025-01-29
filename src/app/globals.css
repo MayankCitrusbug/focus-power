@@ -1,0 +1,32 @@
+@import '../../public/font/inter/stylesheet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fp-bg: rgba(247, 247, 252, 1);
+  --fp-purple-light: rgba(235, 235, 254, 1);
+  --fp-purple-medium: rgba(171, 171, 194, 1);
+  --fp-purple-dark: rgba(88, 88, 116, 1);
+  --fp-blue-light: rgba(48, 48, 211, 1);
+  --fp-blue-dark :rgba(10, 10, 168, 1);
+  --fp-success-light: rgba(47, 194, 44, 1);
+  --fp-success-dark: rgba(8, 150, 5, 1);
+  --fp-success-bg: rgba(230, 242, 230, 1);
+  --fp-orange: rgba(235, 160, 72, 1);
+  --fp-warning-light: rgba(212, 125, 23, 1);
+  --fp-warning-dark: rgba(178, 96, 0, 1);
+  --fp-warning-bg: rgba(246, 231, 214, 1);
+  --fp-danger-light: rgba(212, 33, 69, 1);
+  --fp-danger-dark: rgba(178, 0, 36, 1);
+  --fp-danger-bg: rgba(250, 235, 238, 1);
+  --fp-body: rgba(26, 26, 51, 1);
+  --fp-white: rgba(255, 255, 255, 1);
+}
+
+body {
+  color: var(--fp-body);
+  background: var(--fp-bg);
+  font-family: var(--font-inter);
+}
