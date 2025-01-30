@@ -146,7 +146,11 @@ body {
 }
 
 /* font */
-
+.heading-4 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 34px;
+}
 .heading-5 {
   font-size: 18px;
   font-weight: 600;
@@ -167,9 +171,46 @@ body {
   font-weight: 600;
   line-height: 18px;
 }
+.sb-caption-3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
 .body-2 {
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
 }
 
+/* aside */
+
+.ant-layout-sider-children {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+}
+.ant-menu-root {
+  border-inline-end: none !important;
+  font-family: "Inter";
+}
+.ant-menu-item-selected {
+  color: var(--fp-blue-light) !important;
+  background: var(--fp-white) !important;
+}
+.ant-menu-item {
+  height: auto !important;
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+  margin-block: 0 !important;
+  width: auto !important;
+  color: var(--fp-purple-dark) !important;
+}
+.ant-menu-submenu-title {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: var(--fp-purple-dark) !important;
+}
+.ant-menu-submenu-arrow {
+  inset-inline-end: 0px !important;
+}

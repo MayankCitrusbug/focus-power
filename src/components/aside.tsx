@@ -1,14 +1,29 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Icon, {
-  PlusOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Layout, Menu } from "antd";
+
+const { Sider } = Layout;
 
 import logo from "../../public/images/focus-power-logo.png";
 import applyRadicalFocus from "../../public/images/apply-radical-focus.png";
+import Link from "next/link";
+
+type MenuItem = Required<MenuProps>["items"][number];
+
+function getItem(
+  label: React.ReactNode,
+  key?: React.Key,
+  children?: MenuItem[]
+): MenuItem {
+  return {
+    key,
+    children,
+    label,
+  } as MenuItem;
+}
 
 const getIconColor = (isActive: boolean) =>
   isActive ? "rgba(48, 48, 211, 1)" : "rgba(171, 171, 194, 1)";
@@ -208,52 +223,57 @@ const LineSegmentsSvg = ({ active }: { active: boolean }) => (
   </svg>
 );
 
-const ApertureIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <ApertureSvg active={active} />} />
-);
-const MountainsIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <MountainsSvg active={active} />} />
-);
-const UserSwitchIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <UserSwitchSvg active={active} />} />
-);
-const HexagonIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <HexagonSvg active={active} />} />
-);
-const UsersFourIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <UsersFourSvg active={active} />} />
-);
-const ChartPieSliceIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <ChartPieSliceSvg active={active} />} />
-);
-const RocketLaunchIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <RocketLaunchSvg active={active} />} />
-);
-const LineSegmentIcon = ({ active }: { active: boolean }) => (
-  <Icon component={() => <LineSegmentsSvg active={active} />} />
-);
-
-const App: React.FC = () => {
+const Aside: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKey, setSelectedKey] = useState("1");
 
+  const items: MenuItem[] = [
+    getItem(
+      <span className="sb-caption-2 fp-purple-medium-ft">Direct Reports</span>
+    ),
+    getItem("My Radical Focus", "1"),
+    getItem("Jennifer Mayer CSO", "sub1", [
+      getItem("Tom", "2"),
+      getItem("Bill", "3"),
+      getItem("Alex", "4"),
+    ]),
+    getItem("John Hancock CPO", "5"),
+    getItem("Johny Cash CFO", "sub2", [
+      getItem("Team 1", "6"),
+      getItem("Team 2", "7"),
+    ]),
+    getItem("Manfred Muller COO", "sub3", [
+      getItem("another 1", "8"),
+      getItem("another 2", "9"),
+    ]),
+    getItem(
+      <button className="fp-purple-light-bg fp-blue-light-ft sb-caption-1 p-[9px] rounded-lg flex items-center justify-center w-full mt-4">
+        <PlusOutlined className="mr-1.5 text-lg" />
+        Add Direct Report
+      </button>
+    ),
+  ];
+
   const asideItems = [
-    { key: "1", icon: <ApertureIcon active={selectedKey === "1"} /> },
-    { key: "2", icon: <MountainsIcon active={selectedKey === "2"} /> },
-    { key: "3", icon: <UserSwitchIcon active={selectedKey === "3"} /> },
-    { key: "4", icon: <HexagonIcon active={selectedKey === "4"} /> },
-    { key: "5", icon: <UsersFourIcon active={selectedKey === "5"} /> },
-    { key: "6", icon: <ChartPieSliceIcon active={selectedKey === "6"} /> },
-    { key: "7", icon: <RocketLaunchIcon active={selectedKey === "7"} /> },
-    { key: "8", icon: <LineSegmentIcon active={selectedKey === "8"} /> },
+    { key: "1", icon: <ApertureSvg active={selectedKey === "1"} /> },
+    { key: "2", icon: <MountainsSvg active={selectedKey === "2"} /> },
+    { key: "3", icon: <UserSwitchSvg active={selectedKey === "3"} /> },
+    { key: "4", icon: <HexagonSvg active={selectedKey === "4"} /> },
+    { key: "5", icon: <UsersFourSvg active={selectedKey === "5"} /> },
+    { key: "6", icon: <ChartPieSliceSvg active={selectedKey === "6"} /> },
+    { key: "7", icon: <RocketLaunchSvg active={selectedKey === "7"} /> },
+    { key: "8", icon: <LineSegmentsSvg active={selectedKey === "8"} /> },
   ];
 
   return (
-    <aside className="flex">
+    <div className="flex h-dvh">
       <div>
-        <a className="" href="/">
-          <Image className="m-4" src={logo} height={32} width={32} alt="logo" />
-        </a>
+        <Link
+          className="flex p-4 border-b border-[var(--fp-purple-light)]"
+          href="/"
+        >
+          <Image className="" src={logo} height={32} width={32} alt="logo" />
+        </Link>
         <ul className="mt-7">
           {asideItems.map((item) => (
             <li
@@ -269,13 +289,13 @@ const App: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className="fp-white-bg h-dvh relative">
-        <h5 className={`${collapsed ? "hidden" : "px-6 py-[18px] heading-5"}`}>
+      {/* <div className="fp-white-bg h-dvh relative">
+        <h5 className={`border-b-2 ${collapsed ? "hidden" : "px-6 py-[18px] heading-5"}`}>
           Radical Focus
         </h5>
         <button
           onClick={() => setCollapsed((past) => !past)}
-          className={`text-xs fp-bg py-2 px-[2px] absolute translate-y-[-50%] rounded-tl-md rounded-bl-md ${collapsed ? '-right-6 top-8 ' : 'right-0 top-8'}`}
+          className={`text-xs fp-bg py-2 px-[2px] absolute translate-y-[-50%]  ${collapsed ? '-right-6 top-8 fp-white-bg rounded-tr-md rounded-br-md' : 'right-0 top-8 rounded-tl-md rounded-bl-md'}`}
         >
           {collapsed ? <RightOutlined /> : <LeftOutlined />}
         </button>
@@ -286,7 +306,7 @@ const App: React.FC = () => {
               : "flex flex-col h-[calc(100dvh-64px)] justify-between"
           }`}
         >
-          <div className="p-6 flex flex-col gap-4">
+          <div className="p-6 flex flex-col gap-4"> 
             <span className="sb-caption-2 fp-purple-medium-ft">
               Direct Report
             </span>
@@ -331,9 +351,64 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-    </aside>
+      </div> */}
+
+      <Sider
+        className="fp-white-bg relative"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth={0}
+        width={"fit-content"}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <h5
+          className={`border-b border-[var(--fp-purple-light)] ${
+            collapsed ? "hidden" : "px-6 py-[18px] heading-5"
+          }`}
+        >
+          Radical Focus
+        </h5>
+        <button
+          onClick={() => setCollapsed((past) => !past)}
+          className={`text-xs fp-bg py-2 px-[2px] absolute translate-y-[-50%]  ${
+            collapsed
+              ? "-right-4 top-8 fp-white-bg rounded-tr-md rounded-br-md"
+              : "right-0 top-8 rounded-tl-md rounded-bl-md"
+          }`}
+        >
+          {collapsed ? <RightOutlined /> : <LeftOutlined />}
+        </button>
+        {collapsed ? (
+          ""
+        ) : (
+          <Menu
+            className="p-6 fp-white-bg sb-caption-1"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={items}
+          />
+        )}
+        {!collapsed && (
+          <div className="flex flex-col items-center pt-6 pb-8 mt-auto">
+            <Image
+              src={applyRadicalFocus}
+              width={162}
+              height={158}
+              alt="apply radical focus"
+            />
+            <div className="mt-4 text-center px-6">
+              <p className="sb-caption-1">Apply Radical Focus</p>
+              <p className="pt-2 body-2 mt-2">
+                Track objectives, define priorities <br /> and update KPIs &
+                initiatives
+              </p>
+            </div>
+          </div>
+        )}
+      </Sider>
+    </div>
   );
 };
 
-export default App;
+export default Aside;

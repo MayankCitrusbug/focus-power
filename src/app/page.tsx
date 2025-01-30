@@ -1,9 +1,9 @@
-import Aside from "@/components/aside";
+import RadicalFocus from "@/components/radical-focus/radical-focus";
 
 export default function Home() {
   return (
-    <>
-      <Aside />
-    </>
+    <div className="px-10">
+      <RadicalFocus />
+    </div>
   );
 }
