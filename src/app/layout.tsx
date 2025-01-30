@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Aside from "@/components/aside";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Focus Power",
@@ -16,7 +18,13 @@ export default function RootLayout({
       <body
         className={`font-inter antialiased`}
       >
+        <div className="flex"> 
+      <Aside />
+      <div className="flex-1">
+        <Header />
         {children}
+      </div>
+    </div>
       </body>
     </html>
   );
