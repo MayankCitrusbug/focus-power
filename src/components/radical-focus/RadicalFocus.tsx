@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import RadicalFocusHeader from "./radical-focus-header";
+import RadicalFocusHeader from "./RadicalFocusHeader";
+import Objectives from './Objectives';
 
 const RadicalFocus: React.FC = () => {
   const [rfSelectedOpt, setRfSelectedOpt] = useState('obj');
@@ -59,7 +60,9 @@ const RadicalFocus: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className=''></div>
+      <div className='py-3'>
+        <Objectives />
+      </div>
     </>
   );
 }

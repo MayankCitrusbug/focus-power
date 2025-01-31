@@ -9,6 +9,7 @@ import rocketLaunchSvg from './rocket-launch.svg'
 import userSwitchSvg from './user-switch.svg'
 import paperPlaneSvg from './paper-plane.svg'
 import bellSvg from './bell.svg'
+import plusSvg from './plus.svg'
 
 export const icons = {
     apertureSvg,
@@ -21,5 +22,6 @@ export const icons = {
     rocketLaunchSvg,
     userSwitchSvg,
     paperPlaneSvg,
-    bellSvg
+    bellSvg,
+    plusSvg
 }

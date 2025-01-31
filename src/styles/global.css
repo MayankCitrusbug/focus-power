@@ -156,6 +156,11 @@ body {
   font-weight: 600;
   line-height: 28px;
 }
+.heading-6 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
 .m-caption-1 {
   font-size: 14px;
   font-weight: 500;
@@ -176,6 +181,11 @@ body {
   font-weight: 600;
   line-height: 24px;
 }
+.sb-caption-4 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
 .body-2 {
   font-size: 14px;
   font-weight: 400;
@@ -188,25 +198,26 @@ body {
   background: var(--fp-white);
 }
 .aside-item-selected .svg-icon {
-  filter: brightness(0) saturate(100%) invert(16%) sepia(79%) saturate(7394%) hue-rotate(246deg) brightness(86%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(16%) sepia(79%) saturate(7394%)
+    hue-rotate(246deg) brightness(86%) contrast(92%);
 }
 .aside-item-selected::before {
-    content: '';
-    position: absolute;
-    background-image: url(../assets/images/top_corner.png);
-    top: -12px;
-    right: 0;
-    height: 12px;
-    width: 12px;
+  content: '';
+  position: absolute;
+  background-image: url(../assets/images/top_corner.png);
+  top: -12px;
+  right: 0;
+  height: 12px;
+  width: 12px;
 }
 .aside-item-selected::after {
-    content: '';
-    position: absolute;
-    background-image: url(../assets/images/bottom_corner.png);
-    bottom: -12px;
-    right: 0;
-    height: 12px;
-    width: 12px;
+  content: '';
+  position: absolute;
+  background-image: url(../assets/images/bottom_corner.png);
+  bottom: -12px;
+  right: 0;
+  height: 12px;
+  width: 12px;
 }
 
 .aside-item:hover {
@@ -215,23 +226,24 @@ body {
   background: var(--fp-white);
 }
 .aside-item:hover::before {
-    content: '';
-    position: absolute;
-    background-image: url(../assets/images/top_corner.png);
-    top: -12px;
-    right: 0;
-    height: 12px;
-    width: 12px;
+  content: '';
+  position: absolute;
+  background-image: url(../assets/images/top_corner.png);
+  top: -12px;
+  right: 0;
+  height: 12px;
+  width: 12px;
 }
 .aside-item:hover::after {
-    content: '';
-    position: absolute;
-    background-image: url(../assets/images/bottom_corner.png);
-    bottom: -12px;
-    right: 0;
-    height: 12px;
-    width: 12px;
+  content: '';
+  position: absolute;
+  background-image: url(../assets/images/bottom_corner.png);
+  bottom: -12px;
+  right: 0;
+  height: 12px;
+  width: 12px;
 }
 .aside-item:hover .svg-icon {
-    filter: brightness(0) saturate(100%) invert(16%) sepia(79%) saturate(7394%) hue-rotate(246deg) brightness(86%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(16%) sepia(79%) saturate(7394%)
+    hue-rotate(246deg) brightness(86%) contrast(92%);
 }
