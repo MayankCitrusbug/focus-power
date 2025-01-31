@@ -1,51 +1,47 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
+import RadicalFocusHeader from "./radical-focus-header";
 
-function RadicalFocus() {
-  const [rfSelectedOpt, setRfSelectedOpt] = useState("obj");
+const RadicalFocus: React.FC = () => {
+  const [rfSelectedOpt, setRfSelectedOpt] = useState('obj');
   const radicalFocusItems = [
     {
-      key: "obj",
-      label: "Objectives",
+      key: 'obj',
+      label: 'Objectives',
     },
     {
-      key: "pri",
-      label: "Priorities",
+      key: 'pri',
+      label: 'Priorities',
     },
     {
-      key: "kpi",
-      label: "KPIs",
+      key: 'kpi',
+      label: 'KPIs',
     },
     {
-      key: "int",
-      label: "Initiatives",
+      key: 'int',
+      label: 'Initiatives',
     },
     {
-      key: "rec-act",
-      label: "Recurring Activities",
+      key: 'rec-act',
+      label: 'Recurring Activities',
     },
     {
-      key: "manage-mt",
-      label: "Management Meetings",
+      key: 'manage-mt',
+      label: 'Management Meetings',
     },
     {
-      key: "proc",
-      label: "Processes",
+      key: 'proc',
+      label: 'Processes',
     },
     {
-      key: "feedback",
-      label: "Feedback",
+      key: 'feedback',
+      label: 'Feedback',
     },
   ];
 
   return (
-    <div>
-      <div className="flex justify-between pt-10 pb-2">
-        <h4 className="heading-4">My Radical Focus</h4>
-        <button className="sb-caption-2 fp-purple-light-bg fp-blue-light-ft py-1.5 px-2 rounded-md">
-          Radical Focus Settings
-        </button>
-      </div>
+    <>
+      <RadicalFocusHeader />
       <div className="pt-2 pb-[14px]">
         <ul className="flex border-b-2 border-[var(--fp-purple-light)]">
           {radicalFocusItems.map((item) => (
@@ -63,7 +59,8 @@ function RadicalFocus() {
           ))}
         </ul>
       </div>
-    </div>
+      <div className=''></div>
+    </>
   );
 }
 
