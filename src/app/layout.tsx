@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Aside from "@/components/aside";
-import Header from "@/components/header";
+import "../styles/global.css";
+import Aside from "@/components/Aside";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Focus Power",

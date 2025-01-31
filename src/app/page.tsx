@@ -1,4 +1,4 @@
-import RadicalFocus from "@/components/radical-focus/radical-focus";
+import RadicalFocus from "@/components/radical-focus/RadicalFocus";
 
 export default function Home() {
   return (

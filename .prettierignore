@@ -1,0 +1,26 @@
+# Ignore artifacts:
+build
+dist
+node_modules
+
+# Ignore static assets:
+public
+static
+
+# Ignore configuration and environment files:
+.env
+*.config.js
+*.config.cjs
+*.config.mjs
+
+# Ignore lock files:
+package-lock.json
+yarn.lock
+
+# Ignore compiled files and type declarations:
+*.min.js
+*.min.css
+*.d.ts
+
+# Ignore coverage reports:
+coverage
