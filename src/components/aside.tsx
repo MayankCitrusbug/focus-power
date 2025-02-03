@@ -87,7 +87,7 @@ const Aside: React.FC = () => {
               key={item.key}
               onClick={() => setSelectedKey(item.key)}
             >
-              <a href="/"><Image className="svg-icon" src={item.icon} alt="menu-icon" /></a>
+              <Link href="/"><Image className="svg-icon" src={item.icon} alt="menu-icon" /></Link>
             </li>
           ))}
         </ul>
@@ -143,8 +143,8 @@ const Aside: React.FC = () => {
                           </option>
                         ))}
                       </select>
-                      <span className="absolute fp-purple-dark-ft right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                        <DownOutlined />
+                      <span className=" absolute fp-purple-dark-ft right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <DownOutlined size={14} />
                       </span>
                     </li>
                   );
