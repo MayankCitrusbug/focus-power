@@ -1,7 +1,9 @@
 'use client';
 import { useState } from 'react';
 import RadicalFocusHeader from "./RadicalFocusHeader";
-import Objectives from './Objectives';
+import Objectives from './Objective';
+import Priorities from './Priorities';
+import Initiatives from './Initiatives';
 
 const RadicalFocus: React.FC = () => {
   const [rfSelectedOpt, setRfSelectedOpt] = useState('obj');
@@ -50,7 +52,7 @@ const RadicalFocus: React.FC = () => {
               className={`p-3 sb-caption-3 cursor-pointer ${
                 rfSelectedOpt == item.key
                   ? "fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]"
-                  : ""
+                  : "fp-purple-dark-ft"
               }`}
               key={item.key}
               onClick={() => setRfSelectedOpt(item.key)}
@@ -60,8 +62,10 @@ const RadicalFocus: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className='py-3'>
+      <div className='py-3 flex flex-col gap-6'>
         <Objectives />
+        <Priorities />
+        <Initiatives />
       </div>
     </>
   );

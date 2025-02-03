@@ -10,6 +10,11 @@ import userSwitchSvg from './user-switch.svg'
 import paperPlaneSvg from './paper-plane.svg'
 import bellSvg from './bell.svg'
 import plusSvg from './plus.svg'
+import clockSvg from './clock.svg'
+import detailsSvg from './details.svg'
+import headerDDSvg from './header-dd.svg'
+import notePencilSvg from './note-pencil.svg'
+import trashBinSvg from './trashbin.svg'
 
 export const icons = {
     apertureSvg,
@@ -23,5 +28,10 @@ export const icons = {
     userSwitchSvg,
     paperPlaneSvg,
     bellSvg,
-    plusSvg
+    plusSvg,
+    clockSvg,
+    detailsSvg,
+    headerDDSvg,
+    notePencilSvg,
+    trashBinSvg
 }
