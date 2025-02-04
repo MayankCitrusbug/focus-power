@@ -17,8 +17,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   const [progress, setProgress] = useState<number>(initialProgress);
 
   function getColor(value: number,): string {
-    if (value < 50) return 'var(--fp-danger-light)';
-    if (value >= 50 && value < 75) return 'var(--fp-warning-light)';
+    if (value <= 25) return 'var(--fp-danger-light)';
+    if (value > 25 && value < 60) return 'var(--fp-warning-light)';
     return 'var(--fp-success-light)';
   }
 
@@ -56,7 +56,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         />
         <input
           className="px-1.5 py-[3px] border border-[(--fp-purple-light)] rounded-md w-[38px] body-3"
-          type="number"
+          type="text"
           value={`${progress}`}
           readOnly
         />

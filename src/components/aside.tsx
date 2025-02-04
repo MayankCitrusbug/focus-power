@@ -143,8 +143,8 @@ const Aside: React.FC = () => {
                           </option>
                         ))}
                       </select>
-                      <span className=" absolute fp-purple-dark-ft right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                        <DownOutlined size={14} />
+                      <span className="absolute fp-purple-dark-ft right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <Image src={icons.asideDDSvg} alt="dropdown icon" />
                       </span>
                     </li>
                   );

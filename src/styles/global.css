@@ -275,6 +275,23 @@ body {
   overflow-y: auto;
 }
 
+.ant-slider {
+  margin: 0 !important;
+}
+
+.ant-table-tbody > tr > td {
+  position: relative; 
+}
+.ant-table-tbody > tr > td:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 25%; 
+  bottom: 50%; 
+  right: 0; 
+  width: 1px; 
+  background-color: var(--fp-bg); 
+}
+
 /* objective */
 #objectives > .ant-table-wrapper {
   margin: 8px 24px 0 24px;

@@ -1,39 +1,41 @@
 'use client';
 import { useState } from 'react';
-import RadicalFocusHeader from "./RadicalFocusHeader";
+import RadicalFocusHeader from './RadicalFocusHeader';
 import Objectives from './Objective';
 import Priorities from './Priorities';
 import Initiatives from './Initiatives';
+import RecurringActivities from './RecurringActivities';
+import Processes from './Processes';
 
 const RadicalFocus: React.FC = () => {
-  const [rfSelectedOpt, setRfSelectedOpt] = useState('obj');
+  const [rfSelectedOpt, setRfSelectedOpt] = useState('objectives');
   const radicalFocusItems = [
     {
-      key: 'obj',
+      key: 'objectives',
       label: 'Objectives',
     },
     {
-      key: 'pri',
+      key: 'priorities',
       label: 'Priorities',
     },
     {
-      key: 'kpi',
+      key: 'kpis',
       label: 'KPIs',
     },
     {
-      key: 'int',
+      key: 'initiatives',
       label: 'Initiatives',
     },
     {
-      key: 'rec-act',
+      key: 'recurring-activities',
       label: 'Recurring Activities',
     },
     {
-      key: 'manage-mt',
+      key: 'management-meetings',
       label: 'Management Meetings',
     },
     {
-      key: 'proc',
+      key: 'processes',
       label: 'Processes',
     },
     {
@@ -45,14 +47,14 @@ const RadicalFocus: React.FC = () => {
   return (
     <>
       <RadicalFocusHeader />
-      <div className="pt-2 pb-[14px]">
+      <div className="pt-2 pb-[14px] px-10">
         <ul className="flex border-b-2 border-[var(--fp-purple-light)]">
           {radicalFocusItems.map((item) => (
             <li
               className={`p-3 sb-caption-3 cursor-pointer ${
                 rfSelectedOpt == item.key
-                  ? "fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]"
-                  : "fp-purple-dark-ft"
+                  ? 'fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]'
+                  : 'fp-purple-dark-ft'
               }`}
               key={item.key}
               onClick={() => setRfSelectedOpt(item.key)}
@@ -62,13 +64,17 @@ const RadicalFocus: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className='py-3 flex flex-col gap-6'>
-        <Objectives />
-        <Priorities />
-        <Initiatives />
+      <div className='radical-focus-container'>
+        <div className="py-3 px-10 flex flex-col gap-6">
+          <Objectives />
+          <Priorities />
+          <Initiatives />
+          <RecurringActivities />
+          <Processes />
+        </div>
       </div>
     </>
   );
-}
+};
 
 export default RadicalFocus;

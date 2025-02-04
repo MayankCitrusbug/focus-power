@@ -7,6 +7,7 @@ import type { TableProps } from 'antd';
 import CustomSlider from '../elements/CustomSlider';
 import ShowMore from './ShowMore';
 import InputReadOnly from '../elements/InputReadOnly';
+import CustomDatePicker from '../elements/CustomDatePicker';
 
 type ObjectiveType = {
   text: string;
@@ -44,6 +45,9 @@ const expandable: ExpandableConfig<DataType> = {
 const Objectives: React.FC = () => {
   const handleClick = () => {
     console.log('radial focus setting');
+  };
+  const handleDtChange = () => {
+    console.log('date changed');
   };
 
   const objectiveYears: ObjectiveType[] = [
@@ -154,7 +158,11 @@ const Objectives: React.FC = () => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       render: (dueDate) => (
-        <InputReadOnly value={dueDate} classNames='w-24 fp-purple-dark-ft' />
+        <CustomDatePicker
+          selectedDate={dueDate}
+          onDateChange={handleDtChange}
+          classNames="w-24"
+        />
       ),
     },
     {
@@ -171,8 +179,8 @@ const Objectives: React.FC = () => {
     <div className="fp-white-bg rounded-xl overflow-hidden" id="objectives">
       <div className="px-6 py-4 flex justify-between items-center border-b border-[(--fp-purple-light)]">
         <h6 className="heading-6">Objectives</h6>
-        <div className="flex gap-6">
-          <div className="flex">
+        <div className="flex gap-6 ">
+          <div className="flex items-center">
             <span className="m-caption-1 mr-2">Year:</span>
             <div className="flex gap-1">
               {objectiveYears.map((year, index) => (
@@ -185,7 +193,7 @@ const Objectives: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className="flex ">
+          <div className="flex items-center">
             <span className="m-caption-1 mr-2">Select Type(s):</span>
             <div className="flex gap-1">
               {objectiveParameters.map((para, index) => (
@@ -212,7 +220,7 @@ const Objectives: React.FC = () => {
         columns={columns}
         dataSource={data}
       />
-      <ShowMore />
+      <ShowMore show={5} classNames='pt-2' />
     </div>
   );
 };
