@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ShowMore from './ShowMore';
 import InputReadOnly from '../elements/InputReadOnly';
+import CustomDatePicker from '../elements/CustomDatePicker';
 
 interface DataType {
   key: string;
@@ -87,6 +88,9 @@ const Priorities: React.FC = () => {
   const onChange = () => {
     console.log('completed');
   };
+  const handleDtChange = () => {
+    console.log('date changed');
+  };
 
   const columns: TableProps<DataType>['columns'] = [
     {
@@ -95,35 +99,41 @@ const Priorities: React.FC = () => {
       key: 'task',
       render: (task, record) => (
         <div className="flex items-center gap-3">
-          <input type="checkbox" checked={record.completed} className='w-6 h-6' onChange={onChange} />
+          <input
+            type="checkbox"
+            checked={record.completed}
+            className="w-6 h-6"
+            onChange={onChange}
+          />
           {task.link ? (
             <Link href={`/${task.link}`} className="w-full">
-              <InputReadOnly value={task.name} classNames='fp-blue-light-ft underline underline-offset-4 body-2 w-full' />
+              <InputReadOnly
+                value={task.name}
+                classNames="fp-blue-light-ft underline underline-offset-4 body-2 w-full"
+              />
             </Link>
           ) : (
-            <InputReadOnly value={task.name} classNames='body-2 w-full' />
+            <InputReadOnly value={task.name} classNames="body-2 w-full" />
           )}
         </div>
       ),
     },
     {
-      title: (
-        <div className="flex items-center gap-1">
-          Due Date 
-        </div>
-      ),
+      title: 'Due Date',
       dataIndex: 'dueDate',
       key: 'dueDate',
-      width: '144px',
-      render: (date) => (
-        <InputReadOnly value={date} classNames='w-[144px] fp-purple-dark-ft' />
+      render: (dueDate) => (
+        <CustomDatePicker
+          selectedDate={dueDate}
+          onDateChange={handleDtChange}
+          classNames="w-30"
+        />
       ),
     },
     {
       title: <div className="flex items-center gap-1">Time Remaining</div>,
       dataIndex: 'timeRemaining',
       key: 'timeRemaining',
-      width: '144px',
       render: (time) => (
         <div
           className={`sb-caption-2 py-[3px] px-2 flex items-center gap-1 max-w-fit rounded-md 
@@ -140,33 +150,28 @@ const Priorities: React.FC = () => {
       ),
     },
     {
-      title: (
-        <div className="flex items-center gap-1">
-          Priority 
-        </div>
-      ),
+      title: <div className="flex items-center gap-1">Priority</div>,
       dataIndex: 'priority',
       key: 'priority',
-      width: '144px',
       render: (priority) => {
         if (priority == 1) {
           return (
-            <select className='w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-danger-bg fp-danger-dark-ft'>
+            <select className="w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-danger-bg fp-danger-dark-ft">
               <option value="1">High</option>
             </select>
           );
         } else if (priority === 2) {
           return (
-            <select className='w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-warning-bg fp-warning-dark-ft'>
+            <select className="w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-warning-bg fp-warning-dark-ft">
               <option value="2">Medium</option>
             </select>
-          ); 
+          );
         } else {
           return (
-            <select className='w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-success-bg fp-success-dark-ft'>
+            <select className="w-fit px-2 py-[3px] sb-caption-2 rounded-md fp-success-bg fp-success-dark-ft">
               <option value="3">Low</option>
             </select>
-          ); 
+          );
         }
       },
     },
@@ -200,7 +205,7 @@ const Priorities: React.FC = () => {
         columns={columns}
         dataSource={tasks}
       />
-      <ShowMore />
+      <ShowMore show={5} classNames="pt-2" />
     </div>
   );
 };

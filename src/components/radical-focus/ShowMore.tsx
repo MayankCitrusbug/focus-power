@@ -1,7 +1,12 @@
-const ShowMore: React.FC = () => {
+type props = {
+  show: number;
+  classNames: string;
+}
+
+const ShowMore: React.FC<props> = ({ show, classNames}) => {
   return (
-    <div className="pt-2 px-6 pb-6 fp-white-bg">
-      <p className="show-more-ft fp-blue-dark-ft">Show 5 More</p>
+    <div className={`px-6 pb-6 ${classNames}`}>
+      <button className=" fp-white-bg show-more-ft fp-blue-dark-ft">Show {show} More</button>
     </div>
   );
 };
