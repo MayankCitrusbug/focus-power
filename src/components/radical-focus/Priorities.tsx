@@ -1,13 +1,17 @@
 'use client';
-import React from 'react';
-import { icons } from '@/assets/icons';
-import PrimaryIconBtn from '../elements/PrimaryIconBtn';
-import { Table } from 'antd';
-import type { TableProps } from 'antd';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { icons } from '@/assets/icons';
+
+import { CheckCircleFilled } from '@ant-design/icons';
+import { Table } from 'antd';
+import type { TableProps } from 'antd';
+
 import ShowMore from './ShowMore';
 import InputReadOnly from '../elements/InputReadOnly';
+import PrimaryIconBtn from '../elements/PrimaryIconBtn';
 import CustomDatePicker from '../elements/CustomDatePicker';
 
 interface DataType {
@@ -25,7 +29,7 @@ interface DataType {
   priority: number;
 }
 
-const tasks: DataType[] = [
+const initialTasks: DataType[] = [
   {
     key: '1',
     completed: false,
@@ -82,12 +86,20 @@ const tasks: DataType[] = [
 ];
 
 const Priorities: React.FC = () => {
+  const [tasks, setTasks] = useState<DataType[]>(initialTasks);  // State for tasks
+
   const handleClick = () => {
     console.log('radial focus setting');
   };
-  const onChange = () => {
-    console.log('completed');
+
+  const handleToggleCompletion = (key: string) => {
+    setTasks(prevTasks => 
+      prevTasks.map(task => 
+        task.key === key ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
+
   const handleDtChange = () => {
     console.log('date changed');
   };
@@ -99,12 +111,20 @@ const Priorities: React.FC = () => {
       key: 'task',
       render: (task, record) => (
         <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            checked={record.completed}
-            className="w-6 h-6"
-            onChange={onChange}
-          />
+          {record.completed ? (
+            <CheckCircleFilled 
+              className="text-2xl fp-success-light-ft mr-[1px]"
+              onClick={() => handleToggleCompletion(record.key)}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              checked={record.completed}
+              className="w-[27px] h-6 appearance-none rounded-full border border-[var(--fp-bg)]"
+              onChange={() => handleToggleCompletion(record.key)}
+            />
+          )}
+          
           {task.link ? (
             <Link href={`/${task.link}`} className="w-full">
               <InputReadOnly
@@ -186,7 +206,7 @@ const Priorities: React.FC = () => {
             <input
               className="w-[18px] h-[18px]"
               type="checkbox"
-              onChange={onChange}
+              onChange={() => console.log('Show completed')}
             />
             <span className="sb-caption-2 fp-purple-dark-ft">
               Show Completed
