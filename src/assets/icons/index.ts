@@ -17,6 +17,7 @@ import notePencilSvg from './note-pencil.svg'
 import trashBinSvg from './trashbin.svg'
 import asideDDSvg from './aside-dd.svg'
 import linkSimpleSvg from './link-simple.svg'
+import profileDDSvg from './profile-dd.svg'
 
 export const icons = {
     apertureSvg,
@@ -37,5 +38,6 @@ export const icons = {
     headerDDSvg,
     notePencilSvg,
     trashBinSvg,
-    linkSimpleSvg
+    linkSimpleSvg,
+    profileDDSvg
 }

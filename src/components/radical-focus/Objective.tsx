@@ -1,13 +1,12 @@
 'use client';
-import { icons } from '@/assets/icons';
 import PrimaryIconBtn from '../elements/PrimaryIconBtn';
-import PrimaryBtn from '../elements/PrimaryBtn';
-import { Table } from 'antd';
-import type { TableProps } from 'antd';
-import CustomSlider from '../elements/CustomSlider';
-import ShowMore from './ShowMore';
-import InputReadOnly from '../elements/InputReadOnly';
+import ProfileDropdown from '../elements/ProfileDropdown';
 import CustomDatePicker from '../elements/CustomDatePicker';
+import CustomSlider from '../elements/CustomSlider';
+import PrimaryBtn from '../elements/PrimaryBtn';
+import ShowMore from './ShowMore';
+
+import { icons } from '@/assets/icons';
 
 type ObjectiveType = {
   text: string;
@@ -17,34 +16,18 @@ type ObjectiveType = {
 interface DataType {
   key: string;
   objectiveType: string;
+  responsible: string[];
   division: string;
   description: string;
   dueDate: string;
   progress: number;
+  achieved: string;
   conditions: string[];
 }
-type ExpandableConfig<T extends object> = TableProps<T>['expandable'];
-const expandable: ExpandableConfig<DataType> = {
-  expandedRowRender: (record) => (
-    <div className="p-4 bg-gray-100 rounded-md">
-      <p>
-        <strong>Division:</strong> {record.division}
-      </p>
-      <p>
-        <strong>Description:</strong> {record.description}
-      </p>
-      <p>
-        <strong>Due Date:</strong> {record.dueDate}
-      </p>
-      <CustomSlider initialProgress={record.progress} />
-    </div>
-  ),
-  rowExpandable: (record) => !!record.conditions,
-};
 
 const Objectives: React.FC = () => {
   const handleClick = () => {
-    console.log('radial focus setting');
+    console.log('objectives');
   };
   const handleDtChange = () => {
     console.log('date changed');
@@ -85,10 +68,12 @@ const Objectives: React.FC = () => {
       key: '1',
       objectiveType: 'company',
       division: 'CEO',
+      responsible: ['matilda', 'matilda', 'matilda'],
       description:
         'By 2030 we want to be the leader in XXX with only newly launched product line',
       dueDate: '21.10.2029',
       progress: 25,
+      achieved: 'Objective is achieved when',
       conditions: [
         'We have companyX as client',
         'We are larger than competitorY',
@@ -99,84 +84,30 @@ const Objectives: React.FC = () => {
       key: '2',
       objectiveType: 'division',
       division: 'Sales',
+      responsible: ['matilda', 'matilda'],
       description:
         'By 2030 we want to be the leader in XXX with only newly launched product line',
       dueDate: '21.10.2029',
       progress: 25,
+      achieved: 'Objective is achieved when',
       conditions: ['We have expanded into regionZ', 'Revenue has grown by 20%'],
     },
     {
       key: '3',
       objectiveType: 'division',
       division: 'Sales',
+      responsible: ['matilda', 'matilda'],
       description:
         'By 2030 we want to be the leader in XXX with only newly launched product line',
       dueDate: '21.10.2029',
       progress: 25,
+      achieved: 'Objective is achieved when',
       conditions: ['We have expanded into regionZ', 'Revenue has grown by 20%'],
     },
   ];
 
-  const columns: TableProps<DataType>['columns'] = [
-    // Table.EXPAND_COLUMN,
-    {
-      title: 'Objective Type',
-      dataIndex: 'objectiveType',
-
-      key: 'objectiveType',
-      render: (_, record) =>
-        record.objectiveType === 'company' ? (
-          <span className="sb-caption-1 fp-success-bg fp-success-dark-ft px-2.5 py-[5px] rounded-lg">
-            {(Table.EXPAND_COLUMN = true)}
-            Company
-          </span>
-        ) : record.objectiveType === 'division' ? (
-          <span className="sb-caption-1 fp-warning-bg fp-warning-dark-ft px-2.5 py-[5px] rounded-lg">
-            Division
-          </span>
-        ) : (
-          <span className="sb-caption-1 fp-danger-bg fp-danger-dark-ft px-2.5 py-[5px] rounded-lg">
-            Individual
-          </span>
-        ),
-    },
-    {
-      title: 'Division',
-      dataIndex: 'division',
-      key: 'division',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-      render: (description) => (
-        <textarea readOnly value={description} className='py-[5px] px-2.5 border border-[var(--fp-bg)] body-2 rounded-lg w-full fp-purple-dark-ft ' />
-      ),
-    },
-    {
-      title: 'Due Date',
-      dataIndex: 'dueDate',
-      key: 'dueDate',
-      render: (dueDate) => (
-        <CustomDatePicker
-          selectedDate={dueDate}
-          onDateChange={handleDtChange}
-          classNames="w-24"
-        />
-      ),
-    },
-    {
-      title: 'Progress',
-      dataIndex: 'progress',
-      key: 'progress',
-      render: (_, { progress }) => {
-        return <CustomSlider initialProgress={progress} />;
-      },
-    },
-  ];
-
   return (
-    <div className="fp-white-bg rounded-xl overflow-hidden" id="objectives">
+    <div className="fp-white-bg rounded-xl overflow-hidden">
       <div className="px-6 py-4 flex justify-between items-center border-b border-[(--fp-purple-light)]">
         <h6 className="heading-6">Objectives</h6>
         <div className="flex gap-6 ">
@@ -214,13 +145,76 @@ const Objectives: React.FC = () => {
           />
         </div>
       </div>
-      <Table<DataType>
-        // expandable={expandable}
-        pagination={{ hideOnSinglePage: true }}
-        columns={columns}
-        dataSource={data}
-      />
-      <ShowMore show={5} classNames='pt-2' />
+      <div className="w-full mt-2 mx-6 objective">
+        {/* Header */}
+        <div className="grid grid-cols-[200px_150px_150px_300px_200px_250px] w-full objective__header">
+          <div className="objective__header__item">Objective Type</div>
+          <div className="objective__header__item">Division</div>
+          <div className="objective__header__item">Responsible</div>
+          <div className="objective__header__item">Description</div>
+          <div className="objective__header__item">Due Date</div>
+          <div className="objective__header__item">Progress</div>
+        </div>
+
+        {/* Rows */}
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-[200px_150px_150px_300px_200px_250px] fp-bg shadow-sm rounded-md mb-2"
+          >
+            {/* Objective Type */}
+            <div className="px-4 py-3">
+              {item.objectiveType === 'company' ? (
+                <span className="sb-caption-1 fp-success-bg fp-success-dark-ft px-2.5 py-[5px] rounded-lg">
+                  Company
+                </span>
+              ) : item.objectiveType === 'division' ? (
+                <span className="sb-caption-1 fp-warning-bg fp-warning-dark-ft px-2.5 py-[5px] rounded-lg">
+                  Division
+                </span>
+              ) : (
+                <span className="sb-caption-1 fp-danger-bg fp-danger-dark-ft px-2.5 py-[5px] rounded-lg">
+                  Individual
+                </span>
+              )}
+            </div>
+
+            {/* Division */}
+            <div className="px-4 py-[17px]">
+              <span className="body-2">{item.division}</span>
+            </div>
+
+            {/* Responsible */}
+            <div className="px-3 py-[10px]">
+              {<ProfileDropdown profiles={item.responsible} />}
+            </div>
+
+            {/* Description */}
+            <div className="p-3">
+              <p className="fp-white-bg body-2 border border-fp rounded-md p-1">
+                {item.description}
+              </p>
+            </div>
+
+            {/* Due Date */}
+            <div className="p-3">
+              {
+                <CustomDatePicker
+                  selectedDate={item.dueDate}
+                  onDateChange={handleDtChange}
+                  classNames="w-24"
+                />
+              }
+            </div>
+
+            {/* Progress */}
+            <div className="p-4">
+              {<CustomSlider initialProgress={item.progress} />}
+            </div>
+          </div>
+        ))}
+        <ShowMore show={5} classNames="pt-2" />
+      </div>
     </div>
   );
 };

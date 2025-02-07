@@ -4,11 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { PlusOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Layout, Menu} from 'antd';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
 
 import { icons } from '@/assets/icons';
-import { images } from '../assets/images';
+import { images } from '@/assets/images';
+import '../styles/sidebar/sidebar.css'
 
 const { Sider } = Layout;
 
