@@ -1,0 +1,53 @@
+@import '../global.css';
+
+.ant-table-thead > tr > th {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 16px;
+  color: var(--fp-purple-medium) !important;
+  background-color: var(--fp-white) !important;
+}
+
+.radical-focus-container {
+  height: calc(100dvh - 219px);
+  overflow-y: auto;
+}
+
+.ant-slider {
+  margin: 0 !important;
+}
+
+.ant-table-tbody > tr > td {
+  position: relative;
+}
+
+.ant-table-tbody > tr > td:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 250;
+  right: 0;
+  height: 14px;
+  width: 1px;
+  background-color: rgba(235, 235, 245, 1);
+}
+
+/* objective */
+.objective__header__item {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 16px;
+  color: var(--fp-purple-medium);
+}
+
+#priorities > .ant-table-wrapper {
+  margin: 8px 24px 0 24px;
+}
+#priorities .ant-table-row > .ant-table-cell {
+  padding: 12px !important;
+}
+.red-clock {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(96%) saturate(4675%)
+    hue-rotate(341deg) brightness(73%) contrast(107%);
+}

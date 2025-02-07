@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/global.css";
-import Aside from "@/components/Aside";
+import Aside from "@/components/Sidebar";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
@@ -15,6 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="./favicon.ico" sizes="any" />
+      </head>
       <body
         className={`font-inter antialiased`}
       >
