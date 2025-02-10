@@ -7,6 +7,8 @@ import PrimaryBtn from '../elements/PrimaryBtn';
 import ShowMore from './ShowMore';
 
 import { icons } from '@/assets/icons';
+import Image from 'next/image';
+import { useState } from 'react';
 
 type ObjectiveType = {
   text: string;
@@ -26,11 +28,22 @@ interface DataType {
 }
 
 const Objectives: React.FC = () => {
+  const [expandedRows, setExpandedRows] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
   const handleClick = () => {
     console.log('objectives');
   };
   const handleDtChange = () => {
     console.log('date changed');
+  };
+
+  const toggleRow = (key: string) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   };
 
   const objectiveYears: ObjectiveType[] = [
@@ -107,7 +120,7 @@ const Objectives: React.FC = () => {
   ];
 
   return (
-    <div className="fp-white-bg rounded-xl overflow-hidden">
+    <div className="fp-white-bg rounded-xl">
       <div className="px-6 py-4 flex justify-between items-center border-b border-[(--fp-purple-light)]">
         <h6 className="heading-6">Objectives</h6>
         <div className="flex gap-6 ">
@@ -145,74 +158,114 @@ const Objectives: React.FC = () => {
           />
         </div>
       </div>
-      <div className="w-full mt-2 mx-6 objective">
+      <div className="max-w-full mt-2 mx-6 objective min-w-[808px] overflow-x-auto">
         {/* Header */}
-        <div className="grid grid-cols-[200px_150px_150px_300px_200px_250px] w-full objective__header">
-          <div className="objective__header__item">Objective Type</div>
-          <div className="objective__header__item">Division</div>
-          <div className="objective__header__item">Responsible</div>
-          <div className="objective__header__item">Description</div>
-          <div className="objective__header__item">Due Date</div>
+        <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px] min-w-[808px] objective__header">
+          <div className="objective__header__item table-item-border-right after:top-[18px]">Objective Type</div>
+          <div className="objective__header__item table-item-border-right after:top-[18px]">Division</div>
+          <div className="objective__header__item table-item-border-right after:top-[18px]">Responsible</div>
+          <div className="objective__header__item table-item-border-right after:top-[18px]">Description</div>
+          <div className="objective__header__item table-item-border-right after:top-[18px]">Due Date</div>
           <div className="objective__header__item">Progress</div>
         </div>
 
         {/* Rows */}
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-[200px_150px_150px_300px_200px_250px] fp-bg shadow-sm rounded-md mb-2"
-          >
-            {/* Objective Type */}
-            <div className="px-4 py-3">
-              {item.objectiveType === 'company' ? (
-                <span className="sb-caption-1 fp-success-bg fp-success-dark-ft px-2.5 py-[5px] rounded-lg">
-                  Company
-                </span>
-              ) : item.objectiveType === 'division' ? (
-                <span className="sb-caption-1 fp-warning-bg fp-warning-dark-ft px-2.5 py-[5px] rounded-lg">
-                  Division
-                </span>
-              ) : (
-                <span className="sb-caption-1 fp-danger-bg fp-danger-dark-ft px-2.5 py-[5px] rounded-lg">
-                  Individual
-                </span>
+        <div className="flex flex-col gap-1">
+          {data.map((item, index) => (
+            <div key={index}>
+              <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px] min-w-[808px] fp-bg shadow-sm rounded-md">
+                <div className="px-4 py-3 flex items-start gap-2 table-item-border-right after:top-6">
+                  <button
+                    className="mt-[5px] min-w-[18px]"
+                    onClick={() => toggleRow(item.key)}
+                  >
+                    <Image
+                      src={
+                        expandedRows[item.key]
+                          ? icons.tableDdUpSvg
+                          : icons.tableDDSvg
+                      }
+                      alt="dropdown icon"
+                    />
+                  </button>
+                  {item.objectiveType === 'company' ? (
+                    <span className="sb-caption-1 fp-success-bg fp-success-dark-ft px-2.5 py-[5px] rounded-lg">
+                      Company
+                    </span>
+                  ) : item.objectiveType === 'division' ? (
+                    <span className="sb-caption-1 fp-warning-bg fp-warning-dark-ft px-2.5 py-[5px] rounded-lg">
+                      Division
+                    </span>
+                  ) : (
+                    <span className="sb-caption-1 fp-danger-bg fp-danger-dark-ft px-2.5 py-[5px] rounded-lg">
+                      Individual
+                    </span>
+                  )}
+                </div>
+
+                <div className="px-4 py-[17px] table-item-border-right after:top-6">
+                  <span className="body-2">{item.division}</span>
+                </div>
+
+                <div className="px-3 py-[10px] table-item-border-right after:top-6">
+                  {<ProfileDropdown profiles={item.responsible} />}
+                </div>
+
+                <div className="p-3 table-item-border-right after:top-6">
+                  <p className="fp-white-bg body-2 border border-fp fp-purple-dark-ft rounded-md p-1">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="p-3 table-item-border-right after:top-6">
+                  {
+                    <CustomDatePicker
+                      selectedDate={item.dueDate}
+                      onDateChange={handleDtChange}
+                      classNames="w-24"
+                    />
+                  }
+                </div>
+
+                <div className="p-4">
+                  {<CustomSlider initialProgress={item.progress} />}
+                </div>
+              </div>
+              {expandedRows[item.key] && (
+                <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px]">
+                  <div className="col-span-3 sb-caption-1 px-4 py-[17px]">
+                    {item.achieved}
+                  </div>
+                  <div className="col-span-3 objective-conditions">
+                    <ul className="list-disc list-inside p-3 flex flex-col gap-2 fp-purple-dark-ft">
+                      {item.conditions.map((condition, index) => (
+                        <div
+                          key={index + '-' + condition}
+                          className="flex justify-between gap-3 items-center max-w-full"
+                        >
+                          <li className="body-2 px-2.5 py-[5px] rounded-lg border border-fp w-full">
+                            {condition}
+                          </li>
+                          <button type="button" className="mr-[19px] ml-4">
+                            <Image src={icons.trashBinSvg} alt="trash bin" />
+                          </button>
+                        </div>
+                      ))}
+                    </ul>
+                    <div className="px-3 pt-1 pb-3">
+                      <PrimaryIconBtn
+                        icon={icons.plusSvg}
+                        alt="add icon"
+                        text="Add Condition"
+                        onClick={handleClick}
+                      />
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
-
-            {/* Division */}
-            <div className="px-4 py-[17px]">
-              <span className="body-2">{item.division}</span>
-            </div>
-
-            {/* Responsible */}
-            <div className="px-3 py-[10px]">
-              {<ProfileDropdown profiles={item.responsible} />}
-            </div>
-
-            {/* Description */}
-            <div className="p-3">
-              <p className="fp-white-bg body-2 border border-fp rounded-md p-1">
-                {item.description}
-              </p>
-            </div>
-
-            {/* Due Date */}
-            <div className="p-3">
-              {
-                <CustomDatePicker
-                  selectedDate={item.dueDate}
-                  onDateChange={handleDtChange}
-                  classNames="w-24"
-                />
-              }
-            </div>
-
-            {/* Progress */}
-            <div className="p-4">
-              {<CustomSlider initialProgress={item.progress} />}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <ShowMore show={5} classNames="pt-2" />
       </div>
     </div>

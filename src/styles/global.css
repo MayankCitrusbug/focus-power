@@ -23,6 +23,7 @@
   --fp-danger-bg: rgba(250, 235, 238, 1);
   --fp-body: rgba(26, 26, 51, 1);
   --fp-white: rgba(255, 255, 255, 1);
+  --fp-border: rgba(235, 235, 245, 1);
 }
 
 body {
@@ -204,5 +205,5 @@ body {
 
 
 .border-fp {
-  border-color: rgba(235, 235, 245, 1);
+  border-color: var(--fp-border);
 }

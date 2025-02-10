@@ -138,7 +138,7 @@ const Aside: React.FC = () => {
 
   return (
     <div className="flex h-dvh">
-      <div>
+      <div className='min-w-16'>
         <Link
           className="flex p-4 border-b border-[var(--fp-purple-light)]"
           href="/"
@@ -255,7 +255,7 @@ const Aside: React.FC = () => {
           trigger={null}
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
-          width={'fit-content'}
+          width={'280px'}
           className={collapsed ? 'sider-collapsed' : 'sider-expanded'}
         >
 
