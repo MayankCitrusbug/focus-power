@@ -32,6 +32,18 @@
   background-color: rgba(235, 235, 245, 1);
 }
 
+.table-item-border-right {
+  position: relative;
+}
+.table-item-border-right::after {
+  content: '';
+  width: 1px;
+  height: 14px;
+  background: var(--fp-border);
+  position: absolute;
+  right: 0;
+}
+
 /* objective */
 .objective__header__item {
   font-size: 12px;
@@ -39,6 +51,20 @@
   line-height: 18px;
   padding: 16px;
   color: var(--fp-purple-medium);
+}
+
+.objective-conditions {
+  position:relative;
+}
+
+.objective-conditions::after {
+  content: '';
+  width: 1px;
+  background: var(--fp-border);
+  position: absolute;
+  top: 21px;
+  bottom: 21px;
+  left: 0;
 }
 
 #priorities > .ant-table-wrapper {
