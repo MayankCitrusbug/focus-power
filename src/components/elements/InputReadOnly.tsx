@@ -8,7 +8,7 @@ const InputReadOnly: React.FC<InputReadOnlyProps> = ({
   classNames
 }) => {
   return (
-    <input type="text" value={value} className={`py-[5px] px-2.5 border border-[var(--fp-bg)] rounded-lg ${classNames}`} readOnly />
+    <input type="text" value={value} className={`py-[5px] px-2.5 border border-fp rounded-lg ${classNames}`} readOnly />
   );
 };
 
