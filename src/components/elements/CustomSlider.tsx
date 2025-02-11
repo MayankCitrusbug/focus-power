@@ -55,7 +55,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
           style={{ width: sliderWidth }}
         />
         <input
-          className="px-1.5 py-[3px] border border-[(--fp-purple-light)] rounded-md w-[38px] body-3"
+          className="px-1.5 py-[3px] border border-fp rounded-md w-[38px] body-3"
           type="text"
           value={`${progress}`}
           readOnly

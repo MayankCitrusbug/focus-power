@@ -8,7 +8,7 @@ import Initiatives from './Initiatives';
 import RecurringActivities from './RecurringActivities';
 import Processes from './Processes';
 
-import '../../styles/radical-focus/radical-focus.css'
+import '../../styles/radical-focus/radical-focus.css';
 
 const RadicalFocus: React.FC = () => {
   const [rfSelectedOpt, setRfSelectedOpt] = useState('objectives');
@@ -26,7 +26,7 @@ const RadicalFocus: React.FC = () => {
 
   const handleScrollToSection = (key: string) => {
     setRfSelectedOpt(key);
-    
+
     // Scroll to the selected section
     const section = document.getElementById(key);
     if (section) {
@@ -38,35 +38,33 @@ const RadicalFocus: React.FC = () => {
     <>
       <RadicalFocusHeader />
       <div className="pt-2 pb-[14px] px-10">
-        <ul className="flex border-b-2 border-[var(--fp-purple-light)]">
-          {radicalFocusItems.map((item) => (
-            <li
-              className={`p-3 sb-caption-3 cursor-pointer ${
-                rfSelectedOpt === item.key
-                  ? 'fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]'
-                  : 'fp-purple-dark-ft'
-              }`}
-              key={item.key}
-              onClick={() => handleScrollToSection(item.key)}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-x-auto">
+          <ul className="flex border-b-2 border-[var(--fp-purple-light) ">
+            {radicalFocusItems.map((item) => (
+              <li
+                key={item.key}
+                className={`p-3 sb-caption-3 flex-shrink-0 cursor-pointer ${
+                  rfSelectedOpt === item.key
+                    ? 'fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]'
+                    : 'fp-purple-dark-ft'
+                }`}
+                onClick={() => handleScrollToSection(item.key)}
+              >
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      
-      <div className='radical-focus-container'>
+
+      <div className="radical-focus-container">
         <div className="my-3 mx-10 flex flex-col">
-          <div id="objectives" className='fp-white-bg rounded-xl overflow-hidden'>
-            <Objectives />
+          <div
+            id="objectives"
+            className="fp-white-bg rounded-xl overflow-hidden"
+          >
+            {/* <Objectives /> */}
           </div>
-          <div id="priorities" className='h-[600px]'>Priorities</div>
-          <div id="kpis" className='h-[600px]'>KPIs</div>
-          <div id="initiatives" className='h-[600px]'>Initiatives</div>
-          <div id="recurring-activities" className='h-[600px]'>Recurring Activities</div>
-          <div id="management-meetings" className='h-[600px]'>Management Meetings</div>
-          <div id="processes" className='h-[600px]'>Processes</div>
-          <div id="feedback" className='h-[600px]'>Feedback</div>
         </div>
       </div>
     </>

@@ -29,7 +29,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
     <div className="relative">
       <input
         type="text"
-        className={`fp-purple-dark-ft body-2 cursor-pointer border border-[var(--fp-bg)] rounded-lg px-2.5 py-[5px] ${classNames}`}
+        className={`fp-purple-dark-ft body-2 cursor-pointer border border-fp rounded-lg px-2.5 py-[5px] ${classNames}`}
         value={date.replace(/-/g, '.')}
         readOnly
         onClick={() => setIsEditing(true)} 

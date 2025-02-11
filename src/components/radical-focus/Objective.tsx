@@ -121,9 +121,9 @@ const Objectives: React.FC = () => {
 
   return (
     <div className="fp-white-bg rounded-xl">
-      <div className="px-6 py-4 flex justify-between items-center border-b border-[(--fp-purple-light)]">
+      <div className="px-6 py-4 flex flex-wrap gap-2 justify-between items-center border-b border-[(--fp-purple-light)]">
         <h6 className="heading-6">Objectives</h6>
-        <div className="flex gap-6 ">
+        <div className="flex gap-6 flex-wrap">
           <div className="flex items-center">
             <span className="m-caption-1 mr-2">Year:</span>
             <div className="flex gap-1">
@@ -158,22 +158,32 @@ const Objectives: React.FC = () => {
           />
         </div>
       </div>
-      <div className="max-w-full mt-2 mx-6 objective min-w-[808px] overflow-x-auto">
+      <div className="mt-2 mx-6 objective">
         {/* Header */}
-        <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px] min-w-[808px] objective__header">
-          <div className="objective__header__item table-item-border-right after:top-[18px]">Objective Type</div>
-          <div className="objective__header__item table-item-border-right after:top-[18px]">Division</div>
-          <div className="objective__header__item table-item-border-right after:top-[18px]">Responsible</div>
-          <div className="objective__header__item table-item-border-right after:top-[18px]">Description</div>
-          <div className="objective__header__item table-item-border-right after:top-[18px]">Due Date</div>
-          <div className="objective__header__item">Progress</div>
+        <div className="w-full flex objective__header overflow-x-auto">
+          <div className="objective-type-col objective__header__item table-item-border-right after:top-[18px]">
+            Objective Type
+          </div>
+          <div className="division-col objective__header__item table-item-border-right after:top-[18px]">
+            Division
+          </div>
+          <div className="responsible-col objective__header__item table-item-border-right after:top-[18px]">
+            Responsible
+          </div>
+          <div className="description-col objective__header__item table-item-border-right after:top-[18px]">
+            Description
+          </div>
+          <div className="due-date-col objective__header__item table-item-border-right after:top-[18px]">
+            Due Date
+          </div>
+          <div className="progress-col objective__header__item">Progress</div>
         </div>
 
         {/* Rows */}
-        <div className="flex flex-col gap-1">
+        {/* <div className="flex flex-col gap-1">
           {data.map((item, index) => (
             <div key={index}>
-              <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px] min-w-[808px] fp-bg shadow-sm rounded-md">
+              <div className="grid grid-cols-[minmax(145px,18%)_minmax(80px,10%)_minmax(112px,14%)_minmax(202px,25%)_minmax(122px,15%)_minmax(145px,18%)] fp-bg shadow-sm rounded-md">
                 <div className="px-4 py-3 flex items-start gap-2 table-item-border-right after:top-6">
                   <button
                     className="mt-[5px] min-w-[18px]"
@@ -203,21 +213,21 @@ const Objectives: React.FC = () => {
                   )}
                 </div>
 
-                <div className="px-4 py-[17px] table-item-border-right after:top-6">
+                <div className="px-4 py-[17px] table-item-border-right after:top-[21px]">
                   <span className="body-2">{item.division}</span>
                 </div>
 
-                <div className="px-3 py-[10px] table-item-border-right after:top-6">
+                <div className="px-3 py-[10px] table-item-border-right after:top-[21px]">
                   {<ProfileDropdown profiles={item.responsible} />}
                 </div>
 
-                <div className="p-3 table-item-border-right after:top-6">
+                <div className="p-3 table-item-border-right after:top-[21px]">
                   <p className="fp-white-bg body-2 border border-fp fp-purple-dark-ft rounded-md p-1">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="p-3 table-item-border-right after:top-6">
+                <div className="p-3 table-item-border-right after:top-[21px]">
                   {
                     <CustomDatePicker
                       selectedDate={item.dueDate}
@@ -232,7 +242,7 @@ const Objectives: React.FC = () => {
                 </div>
               </div>
               {expandedRows[item.key] && (
-                <div className="grid xl:grid-cols-[18%_10%_14%_26%_14%_18%] grid-cols-[145px_80px_112px_211px_112px_145px]">
+                <div className="grid grid-cols-[minmax(145px,18%)_minmax(80px,10%)_minmax(112px,14%)_minmax(202px,25%)_minmax(122px,15%)_minmax(145px,18%)]">
                   <div className="col-span-3 sb-caption-1 px-4 py-[17px]">
                     {item.achieved}
                   </div>
@@ -265,7 +275,7 @@ const Objectives: React.FC = () => {
               )}
             </div>
           ))}
-        </div>
+        </div> */}
         <ShowMore show={5} classNames="pt-2" />
       </div>
     </div>

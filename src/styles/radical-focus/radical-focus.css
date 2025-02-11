@@ -53,8 +53,39 @@
   color: var(--fp-purple-medium);
 }
 
+.objective-type-col {
+  width: 158px;
+  min-width: 16%;
+  flex-shrink: 0;
+}
+.division-col {
+  width: 104px;
+  min-width: 11%;
+  flex-shrink: 0;
+}
+.responsible-col {
+  width: 104px;
+  min-width: 11%;
+  flex-shrink: 0;
+}
+.description-col {
+  width: 305px;
+  min-width: 31%;
+  flex-shrink: 0;
+}
+.due-date-col {
+  width: 120px;
+  min-width: 13%;
+  flex-shrink: 0;
+}
+.progress-col {
+  width: 172px;
+  min-width: 18%;
+  flex-shrink: 0;
+}
+
 .objective-conditions {
-  position:relative;
+  position: relative;
 }
 
 .objective-conditions::after {
