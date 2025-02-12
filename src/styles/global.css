@@ -27,9 +27,12 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   color: var(--fp-body);
   background: var(--fp-bg);
   font-family: var(--font-inter);
+  overflow-x: hidden;
 }
 
 /* bg */
@@ -191,6 +194,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
+  letter-spacing: 0;
 }
 .body-3 {
   font-size: 12px;

@@ -120,8 +120,8 @@ const Objectives: React.FC = () => {
   ];
 
   return (
-    <div className="fp-white-bg rounded-xl">
-      <div className="px-6 py-4 flex flex-wrap gap-2 justify-between items-center border-b border-[(--fp-purple-light)]">
+    <>
+      <div className="px-6 py-4 flex flex-wrap gap-2 justify-between items-center border-b border-fp">
         <h6 className="heading-6">Objectives</h6>
         <div className="flex gap-6 flex-wrap">
           <div className="flex items-center">
@@ -158,35 +158,37 @@ const Objectives: React.FC = () => {
           />
         </div>
       </div>
-      <div className="mt-2 mx-6 objective">
+      <div className="mt-2 mx-6 overflow-x-auto">
         {/* Header */}
-        <div className="w-full flex objective__header overflow-x-auto">
-          <div className="objective-type-col objective__header__item table-item-border-right after:top-[18px]">
+        <div className="flex">
+          <div className="objective__type__col table__header__item table__item__border__right after:top-[18px]">
             Objective Type
           </div>
-          <div className="division-col objective__header__item table-item-border-right after:top-[18px]">
+          <div className="objective__division__col table__header__item table__item__border__right after:top-[18px]">
             Division
           </div>
-          <div className="responsible-col objective__header__item table-item-border-right after:top-[18px]">
+          <div className="objective__responsible__col table__header__item table__item__border__right after:top-[18px]">
             Responsible
           </div>
-          <div className="description-col objective__header__item table-item-border-right after:top-[18px]">
+          <div className="objective__description__col table__header__item table__item__border__right after:top-[18px]">
             Description
           </div>
-          <div className="due-date-col objective__header__item table-item-border-right after:top-[18px]">
+          <div className="objective__dueDate__col table__header__item table__item__border__right after:top-[18px]">
             Due Date
           </div>
-          <div className="progress-col objective__header__item">Progress</div>
+          <div className="objective__progress__col table__header__item">
+            Progress
+          </div>
         </div>
 
         {/* Rows */}
-        {/* <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1">
           {data.map((item, index) => (
             <div key={index}>
-              <div className="grid grid-cols-[minmax(145px,18%)_minmax(80px,10%)_minmax(112px,14%)_minmax(202px,25%)_minmax(122px,15%)_minmax(145px,18%)] fp-bg shadow-sm rounded-md">
-                <div className="px-4 py-3 flex items-start gap-2 table-item-border-right after:top-6">
+              <div className="fp-bg rounded-md flex">
+                <div className="objective__type__col px-4 py-3 flex items-start gap-2 table__item__border__right after:top-6">
                   <button
-                    className="mt-[5px] min-w-[18px]"
+                    className="mt-[6px] min-w-[18px]"
                     onClick={() => toggleRow(item.key)}
                   >
                     <Image
@@ -213,21 +215,21 @@ const Objectives: React.FC = () => {
                   )}
                 </div>
 
-                <div className="px-4 py-[17px] table-item-border-right after:top-[21px]">
+                <div className="objective__division__col px-4 py-[17px] table__item__border__right after:top-[21px]">
                   <span className="body-2">{item.division}</span>
                 </div>
 
-                <div className="px-3 py-[10px] table-item-border-right after:top-[21px]">
+                <div className="objective__responsible__col px-3 py-[10px] table__item__border__right after:top-[21px]">
                   {<ProfileDropdown profiles={item.responsible} />}
                 </div>
 
-                <div className="p-3 table-item-border-right after:top-[21px]">
+                <div className="objective__description__col p-3 table__item__border__right after:top-[21px]">
                   <p className="fp-white-bg body-2 border border-fp fp-purple-dark-ft rounded-md p-1">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="p-3 table-item-border-right after:top-[21px]">
+                <div className="objective__dueDate__col p-3 table__item__border__right after:top-[21px]">
                   {
                     <CustomDatePicker
                       selectedDate={item.dueDate}
@@ -237,16 +239,16 @@ const Objectives: React.FC = () => {
                   }
                 </div>
 
-                <div className="p-4">
+                <div className="objective__progress__col p-4">
                   {<CustomSlider initialProgress={item.progress} />}
                 </div>
               </div>
               {expandedRows[item.key] && (
-                <div className="grid grid-cols-[minmax(145px,18%)_minmax(80px,10%)_minmax(112px,14%)_minmax(202px,25%)_minmax(122px,15%)_minmax(145px,18%)]">
-                  <div className="col-span-3 sb-caption-1 px-4 py-[17px]">
+                <div className="flex">
+                  <div className="objective__achieved__col col-span-3 sb-caption-1 px-4 py-[17px]">
                     {item.achieved}
                   </div>
-                  <div className="col-span-3 objective-conditions">
+                  <div className="objective__condition__col col-span-3 objective__conditions">
                     <ul className="list-disc list-inside p-3 flex flex-col gap-2 fp-purple-dark-ft">
                       {item.conditions.map((condition, index) => (
                         <div
@@ -275,10 +277,10 @@ const Objectives: React.FC = () => {
               )}
             </div>
           ))}
-        </div> */}
-        <ShowMore show={5} classNames="pt-2" />
+        </div>
+        <ShowMore show={5} classNames="pt-4" />
       </div>
-    </div>
+    </>
   );
 };
 

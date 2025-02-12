@@ -38,32 +38,30 @@ const RadicalFocus: React.FC = () => {
     <>
       <RadicalFocusHeader />
       <div className="pt-2 pb-[14px] px-10">
-        <div className="overflow-x-auto">
-          <ul className="flex border-b-2 border-[var(--fp-purple-light) ">
-            {radicalFocusItems.map((item) => (
-              <li
-                key={item.key}
-                className={`p-3 sb-caption-3 flex-shrink-0 cursor-pointer ${
-                  rfSelectedOpt === item.key
-                    ? 'fp-blue-light-ft -mb-[2px] border-b-2 border-[var(--fp-blue-light)]'
-                    : 'fp-purple-dark-ft'
-                }`}
-                onClick={() => handleScrollToSection(item.key)}
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="flex border-b-2 border-fp overflow-x-auto ">
+          {radicalFocusItems.map((item) => (
+            <li
+              key={item.key}
+              className={`p-3 sb-caption-3 flex-shrink-0 cursor-pointer ${
+                rfSelectedOpt === item.key
+                  ? 'fp-blue-light-ft radical-menu-active-item'
+                  : 'fp-purple-dark-ft'
+              }`}
+              onClick={() => handleScrollToSection(item.key)}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className="radical-focus-container">
-        <div className="my-3 mx-10 flex flex-col">
-          <div
-            id="objectives"
-            className="fp-white-bg rounded-xl overflow-hidden"
-          >
-            {/* <Objectives /> */}
+      <div className="radicalFocus__container">
+        <div className="my-3 mx-10 flex flex-col gap-6">
+          <div id="objectives" className="fp-white-bg rounded-xl">
+            <Objectives />
+          </div>
+          <div id="priorities" className="fp-white-bg rounded-xl">
+            <Priorities />
           </div>
         </div>
       </div>
