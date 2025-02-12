@@ -152,7 +152,7 @@ const RecurringActivities: React.FC = () => {
           <Image
             src={icons.clockSvg}
             alt="clock"
-            className={`${time.time < 0 ? 'red-clock' : ''}`}
+            className={`${time.time < 0 ? 'red__clock' : ''}`}
           />
           {time.time}
           {time.unit}
