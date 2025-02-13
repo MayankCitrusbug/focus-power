@@ -154,41 +154,55 @@ body {
   font-size: 22px;
   font-weight: 600;
   line-height: 34px;
+  letter-spacing: 0;
 }
 .heading-5 {
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
+  letter-spacing: 0;
 }
 .heading-6 {
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+  letter-spacing: 0;
 }
 .m-caption-1 {
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
+  letter-spacing: 0;
+}
+.m-caption-2 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0;
 }
 .sb-caption-1 {
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
+  letter-spacing: 0;
 }
 .sb-caption-2 {
   font-size: 12px;
   font-weight: 600;
   line-height: 18px;
+  letter-spacing: 0;
 }
 .sb-caption-3 {
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
+  letter-spacing: 0;
 }
 .sb-caption-4 {
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
+  letter-spacing: 0;
 }
 .body-2 {
   font-size: 14px;
@@ -200,14 +214,21 @@ body {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  letter-spacing: 0;
 }
 .show-more-ft {
   font-size: 12px;
   font-weight: 600;
   line-height: 24px;
+  letter-spacing: 0;
 }
-
 
 .border-fp {
   border-color: var(--fp-border);
+}
+
+@media (max-width: 767px) {
+  .heading-4 {
+    font-size: 18px;
+  }
 }

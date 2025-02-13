@@ -1,4 +1,7 @@
 'use client';
+import Image from 'next/image';
+import { useState } from 'react';
+
 import PrimaryIconBtn from '../elements/PrimaryIconBtn';
 import ProfileDropdown from '../elements/ProfileDropdown';
 import CustomDatePicker from '../elements/CustomDatePicker';
@@ -7,8 +10,6 @@ import PrimaryBtn from '../elements/PrimaryBtn';
 import ShowMore from './ShowMore';
 
 import { icons } from '@/assets/icons';
-import Image from 'next/image';
-import { useState } from 'react';
 
 type ObjectiveType = {
   text: string;
@@ -121,9 +122,9 @@ const Objectives: React.FC = () => {
 
   return (
     <>
-      <div className="px-6 py-4 flex flex-wrap gap-2 justify-between items-center border-b border-fp">
+      <div className="px-2 sm:px-4 md:px-6 py-2 md:py-4 flex flex-col md:flex-row flex-wrap gap-2 md:gap-4 md:justify-between items-start md:items-center border-b border-fp">
         <h6 className="heading-6">Objectives</h6>
-        <div className="flex gap-6 flex-wrap">
+        <div className=" flex-col flex md:flex-row gap-2 md:gap-4 xl:gap-6 flex-wrap">
           <div className="flex items-center">
             <span className="m-caption-1 mr-2">Year:</span>
             <div className="flex gap-1">
@@ -158,7 +159,7 @@ const Objectives: React.FC = () => {
           />
         </div>
       </div>
-      <div className="mt-2 mx-6 overflow-x-auto">
+      <div className="mt-2 mx-2 sm:mx-4 md:mx-6 overflow-x-auto scrollbar-thin">
         {/* Header */}
         <div className="flex">
           <div className="objective__type__col table__header__item table__item__border__right after:top-[18px]">
@@ -185,8 +186,8 @@ const Objectives: React.FC = () => {
         <div className="flex flex-col gap-1">
           {data.map((item, index) => (
             <div key={index}>
-              <div className="fp-bg rounded-md flex">
-                <div className="objective__type__col px-4 py-3 flex items-start gap-2 table__item__border__right after:top-6">
+              <div className="flex">
+                <div className="objective__type__col px-4 py-3 flex items-start gap-2 table__item__border__right after:top-6 fp-bg rounded-tl-md rounded-bl-md">
                   <button
                     className="mt-[6px] min-w-[18px]"
                     onClick={() => toggleRow(item.key)}
@@ -215,21 +216,21 @@ const Objectives: React.FC = () => {
                   )}
                 </div>
 
-                <div className="objective__division__col px-4 py-[17px] table__item__border__right after:top-[21px]">
+                <div className="objective__division__col px-4 py-[17px] table__item__border__right after:top-[21px] fp-bg">
                   <span className="body-2">{item.division}</span>
                 </div>
 
-                <div className="objective__responsible__col px-3 py-[10px] table__item__border__right after:top-[21px]">
+                <div className="objective__responsible__col px-3 py-[10px] table__item__border__right after:top-[21px] fp-bg">
                   {<ProfileDropdown profiles={item.responsible} />}
                 </div>
 
-                <div className="objective__description__col p-3 table__item__border__right after:top-[21px]">
+                <div className="objective__description__col p-3 table__item__border__right after:top-[21px] fp-bg">
                   <p className="fp-white-bg body-2 border border-fp fp-purple-dark-ft rounded-md p-1">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="objective__dueDate__col p-3 table__item__border__right after:top-[21px]">
+                <div className="objective__dueDate__col p-3 table__item__border__right after:top-[21px] fp-bg">
                   {
                     <CustomDatePicker
                       selectedDate={item.dueDate}
@@ -239,7 +240,7 @@ const Objectives: React.FC = () => {
                   }
                 </div>
 
-                <div className="objective__progress__col p-4">
+                <div className="objective__progress__col p-4 fp-bg rounded-tr-md rounded-br-md">
                   {<CustomSlider initialProgress={item.progress} />}
                 </div>
               </div>

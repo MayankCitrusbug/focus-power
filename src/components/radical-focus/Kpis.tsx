@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircleFilled } from '@ant-design/icons';
+import { DatePicker } from 'antd';
+import dayjs from 'dayjs';
 
 import ShowMore from './ShowMore';
 import InputReadOnly from '../elements/InputReadOnly';
@@ -82,7 +84,126 @@ const initialTasks: DataType[] = [
   },
 ];
 
-const Priorities: React.FC = () => {
+interface KPIDataType {
+  key: string;
+  type: 'main' | 'sub';
+  parentKey?: string;
+  kpi: {
+    name: string;
+    link?: string;
+  };
+  responsible: string;
+  unit: string;
+  monthlyTarget: number;
+  monthlyActual: number;
+  timeRemaining: {
+    time: number;
+    unit: 'd' | 'hrs' | 'min';
+  };
+  priority: number;
+  notes?: string;
+  lastUpdated: string;
+}
+
+const plasticsData: KPIDataType[] = [
+  {
+    key: '1',
+    type: 'main',
+    kpi: { name: 'Cost per Lead', link: '/kpi/cost-per-lead' },
+    responsible: 'P. G.',
+    unit: '€/#',
+    monthlyTarget: 150,
+    monthlyActual: 1583438,
+    timeRemaining: { time: 2, unit: 'd' },
+    priority: 1,
+    notes: 'Performance exceeded expectations',
+    lastUpdated: '2025-02-10',
+  },
+  {
+    key: '2',
+    type: 'sub',
+    parentKey: '1',
+    kpi: { name: 'Add Spent', link: '/kpi/add-spent' },
+    responsible: 'P. G.',
+    unit: '€',
+    monthlyTarget: 150000,
+    monthlyActual: -19849,
+    timeRemaining: { time: 5, unit: 'hrs' },
+    priority: 2,
+    notes: 'Budget adjustments needed',
+    lastUpdated: '2025-02-09',
+  },
+  {
+    key: '3',
+    type: 'sub',
+    parentKey: '1',
+    kpi: { name: 'Leads', link: '/kpi/leads' },
+    responsible: 'P. G.',
+    unit: '#',
+    monthlyTarget: 1000,
+    monthlyActual: -19849,
+    timeRemaining: { time: 3, unit: 'd' },
+    priority: 2,
+    notes: 'Lead generation below target',
+    lastUpdated: '2025-02-08',
+  },
+  {
+    key: '4',
+    type: 'main',
+    kpi: { name: 'DB VI', link: '/kpi/db-vi' },
+    responsible: 'P. G.',
+    unit: '€',
+    monthlyTarget: 74750,
+    monthlyActual: -19849,
+    timeRemaining: { time: 8, unit: 'hrs' },
+    priority: 1,
+    notes: 'Revenue drop due to market shifts',
+    lastUpdated: '2025-02-07',
+  },
+  {
+    key: '5',
+    type: 'main',
+    kpi: { name: 'Manufacturing Costs', link: '/kpi/manufacturing-costs' },
+    responsible: 'P. G.',
+    unit: '%',
+    monthlyTarget: 3.22,
+    monthlyActual: 13.08,
+    timeRemaining: { time: 1, unit: 'd' },
+    priority: 3,
+    notes: 'Production efficiency improved',
+    lastUpdated: '2025-02-06',
+  },
+  {
+    key: '6',
+    type: 'main',
+    kpi: { name: 'DB VI Marge', link: '/kpi/db-vi-marge' },
+    responsible: 'P. G.',
+    unit: '%',
+    monthlyTarget: 5,
+    monthlyActual: -1.24,
+    timeRemaining: { time: 6, unit: 'hrs' },
+    priority: 2,
+    notes: 'Margins affected by cost increase',
+    lastUpdated: '2025-02-05',
+  },
+];
+
+const monthsArr: string[] = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'july',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+];
+
+const Kpis: React.FC = () => {
   const [tasks, setTasks] = useState<DataType[]>(initialTasks);
   const [isTableVisible, setIsTableVisible] = useState<boolean>(true);
 
@@ -107,30 +228,37 @@ const Priorities: React.FC = () => {
       <div
         className={`px-2 sm:px-4 md:px-6 py-2 md:py-4 flex flex-wrap gap-2 md:gap-6 justify-between items-center ${isTableVisible ? 'border-b border-fp' : ''}`}
       >
-        <div className="flex gap-4">
-          <button className="min-w-[18px]" onClick={handleToggleTable}>
-            <Image
-              src={isTableVisible ? icons.tableDdUpSvg : icons.tableDDSvg}
-              alt="dropdown icon"
-            />
-          </button>
-          <h6 className="heading-6">Prioritized Tasks</h6>
+        <div className="flex gap-6 items-center">
+          <h6 className="heading-6">KPIs</h6>
+          <div className="flex gap-3 items-center m-caption-2">
+            <div className="kpis__date__div">
+              <span className="mr-3 fp-purple-dark-ft">Show KPIs for:</span>
+              <DatePicker
+                className="max-w-16 px-1.5 py-[3px] body-3 border border-fp mr-2 rounded-lg"
+                picker="year"
+                placeholder="Year"
+                defaultValue={dayjs('2022', 'YYYY')}
+              />
+              <select
+                name=""
+                id=""
+                className="body-3 px-1.5 py-[3px] capitalize border border-fp rounded-lg"
+              >
+                {monthsArr.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <p>Current Week: 2022 - Q2 - CW 28</p>
+          </div>
         </div>
         <div className="flex md:gap-6 gap-2 justify-between md:w-fit w-full">
-          <div className="flex items-center gap-2">
-            <input
-              className="w-[18px] h-[18px]"
-              type="checkbox"
-              onChange={() => console.log('Show completed')}
-            />
-            <span className="sb-caption-2 fp-purple-dark-ft">
-              Show Completed
-            </span>
-          </div>
           <PrimaryIconBtn
             icon={icons.plusSvg}
             alt="add icon"
-            text="Add Task"
+            text="Add KPI"
             onClick={() => console.log('Add task clicked')}
           />
         </div>
@@ -244,4 +372,4 @@ const Priorities: React.FC = () => {
   );
 };
 
-export default Priorities;
+export default Kpis;
