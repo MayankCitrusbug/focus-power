@@ -1,10 +1,33 @@
 @import '../global.css';
 
+.ant-table-thead > tr > th {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 16px;
+  color: var(--fp-purple-medium) !important;
+  background-color: var(--fp-white) !important;
+}
+.ant-slider {
+  margin: 0 !important;
+}
+.ant-table-tbody > tr > td {
+  position: relative;
+}
+.ant-table-tbody > tr > td:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 250;
+  right: 0;
+  height: 14px;
+  width: 1px;
+  background-color: rgba(235, 235, 245, 1);
+}
+
 .radicalFocus__container {
   height: calc(100dvh - 219px);
   overflow-y: auto;
 }
-
 .radical__menu__active__item {
   position: relative;
 }
@@ -17,37 +40,7 @@
   right: 0;
   left: 0;
   background: var(--fp-blue-light);
-  /* transform: translateY(100%); */
 }
-
-.ant-table-thead > tr > th {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  padding: 16px;
-  color: var(--fp-purple-medium) !important;
-  background-color: var(--fp-white) !important;
-}
-
-
-.ant-slider {
-  margin: 0 !important;
-}
-
-.ant-table-tbody > tr > td {
-  position: relative;
-}
-
-.ant-table-tbody > tr > td:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 250;
-  right: 0;
-  height: 14px;
-  width: 1px;
-  background-color: rgba(235, 235, 245, 1);
-}
-
 .table__header__item {
   font-size: 12px;
   font-weight: 600;
@@ -151,15 +144,68 @@
   flex-shrink: 0;
 }
 
-/* kpis */
+/* KPIs */
 
-.kpis__date__div  .ant-picker-input > input {
+.KPIs__date__div  .ant-picker-input > input {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0;
 }
 
+.KPIs__kpi__col {
+  width: 240px;
+  min-width: 19%;
+  flex-shrink: 0;
+}
+.KPIs__responsible__col {
+  width: 104px;
+  min-width: 9%;
+  flex-shrink: 0;
+}
+.KPIs__graph__col {
+  width: 68px;
+  min-width: 5%;
+  flex-shrink: 0;
+}
+.KPIs__unit__col {
+  width: 80px;
+  min-width: 7%;
+  flex-shrink: 0;
+}
+.KPIs__monthlyTarget__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+.KPIs__monthlyActual__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+.KPIs__monthPercentage__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+.KPIs__YTDTarget__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+.KPIs__priority__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+.KPIs__lastUpdated__col {
+  width: 124px;
+  min-width: 10%;
+  flex-shrink: 0;
+}
+
+
+/* media queries */
 
 @media (max-width: 767px) {
   .radicalFocus__container {

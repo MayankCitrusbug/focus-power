@@ -88,20 +88,15 @@ interface KPIDataType {
   key: string;
   type: 'main' | 'sub';
   parentKey?: string;
-  kpi: {
-    name: string;
-    link?: string;
-  };
+  kpi: string;
   responsible: string;
+  graph: string;
   unit: string;
   monthlyTarget: number;
   monthlyActual: number;
-  timeRemaining: {
-    time: number;
-    unit: 'd' | 'hrs' | 'min';
-  };
+  monthPercentage: string;
+  ytdTarget: number;
   priority: number;
-  notes?: string;
   lastUpdated: string;
 }
 
@@ -109,82 +104,195 @@ const plasticsData: KPIDataType[] = [
   {
     key: '1',
     type: 'main',
-    kpi: { name: 'Cost per Lead', link: '/kpi/cost-per-lead' },
+    kpi: 'Cost per Lead',
     responsible: 'P. G.',
+    graph: '/graph/cost-per-lead',
     unit: '€/#',
     monthlyTarget: 150,
     monthlyActual: 1583438,
-    timeRemaining: { time: 2, unit: 'd' },
+    monthPercentage: '107.21%',
+    ytdTarget: 1476923.07,
     priority: 1,
-    notes: 'Performance exceeded expectations',
     lastUpdated: '2025-02-10',
   },
   {
     key: '2',
     type: 'sub',
     parentKey: '1',
-    kpi: { name: 'Add Spent', link: '/kpi/add-spent' },
+    kpi: 'Add Spent',
     responsible: 'P. G.',
+    graph: '/graph/add-spent',
     unit: '€',
     monthlyTarget: 150000,
     monthlyActual: -19849,
-    timeRemaining: { time: 5, unit: 'hrs' },
+    monthPercentage: '-26.55%',
+    ytdTarget: 74750,
     priority: 2,
-    notes: 'Budget adjustments needed',
     lastUpdated: '2025-02-09',
   },
   {
     key: '3',
     type: 'sub',
     parentKey: '1',
-    kpi: { name: 'Leads', link: '/kpi/leads' },
+    kpi: 'Leads',
     responsible: 'P. G.',
+    graph: '/graph/leads',
     unit: '#',
     monthlyTarget: 1000,
     monthlyActual: -19849,
-    timeRemaining: { time: 3, unit: 'd' },
+    monthPercentage: '-26.55%',
+    ytdTarget: 74750,
     priority: 2,
-    notes: 'Lead generation below target',
     lastUpdated: '2025-02-08',
   },
   {
     key: '4',
     type: 'main',
-    kpi: { name: 'DB VI', link: '/kpi/db-vi' },
+    kpi: 'DB VI',
     responsible: 'P. G.',
+    graph: '/graph/db-vi',
     unit: '€',
     monthlyTarget: 74750,
     monthlyActual: -19849,
-    timeRemaining: { time: 8, unit: 'hrs' },
+    monthPercentage: '-26.55%',
+    ytdTarget: 74750,
     priority: 1,
-    notes: 'Revenue drop due to market shifts',
     lastUpdated: '2025-02-07',
   },
   {
     key: '5',
     type: 'main',
-    kpi: { name: 'Manufacturing Costs', link: '/kpi/manufacturing-costs' },
+    kpi: 'Manufacturing Costs',
     responsible: 'P. G.',
+    graph: '/graph/manufacturing-costs',
     unit: '%',
     monthlyTarget: 3.22,
     monthlyActual: 13.08,
-    timeRemaining: { time: 1, unit: 'd' },
+    monthPercentage: '9.85%',
+    ytdTarget: 3.22,
     priority: 3,
-    notes: 'Production efficiency improved',
     lastUpdated: '2025-02-06',
   },
   {
     key: '6',
     type: 'main',
-    kpi: { name: 'DB VI Marge', link: '/kpi/db-vi-marge' },
+    kpi: 'DB VI Marge',
     responsible: 'P. G.',
+    graph: '/graph/db-vi-marge',
     unit: '%',
     monthlyTarget: 5,
     monthlyActual: -1.24,
-    timeRemaining: { time: 6, unit: 'hrs' },
+    monthPercentage: '-6.24%',
+    ytdTarget: 5,
     priority: 2,
-    notes: 'Margins affected by cost increase',
     lastUpdated: '2025-02-05',
+  },
+];
+
+interface WasteDisposalDataType {
+  key: string;
+  kpi: string;
+  responsible: string;
+  graph: string;
+  unit: string;
+  monthlyTarget: number;
+  monthlyActual: number;
+  monthPercentage: string;
+  ytdTarget: number;
+  priority: number;
+  lastUpdated: string;
+}
+const wasteDisposalData: WasteDisposalDataType[] = [
+  {
+    key: '1',
+    kpi: 'Recycling Rate',
+    responsible: 'A. B.',
+    graph: '/graph/recycling-rate',
+    unit: '%',
+    monthlyTarget: 50,
+    monthlyActual: 48,
+    monthPercentage: '-4.00%',
+    ytdTarget: 50,
+    priority: 1,
+    lastUpdated: '2025-02-10',
+  },
+  {
+    key: '2',
+    kpi: 'Landfill Usage',
+    responsible: 'A. B.',
+    graph: '/graph/landfill-usage',
+    unit: 'tons',
+    monthlyTarget: 5000,
+    monthlyActual: 5200,
+    monthPercentage: '4.00%',
+    ytdTarget: 5000,
+    priority: 2,
+    lastUpdated: '2025-02-09',
+  },
+  {
+    key: '3',
+    kpi: 'Composting Rate',
+    responsible: 'A. B.',
+    graph: '/graph/composting-rate',
+    unit: '%',
+    monthlyTarget: 20,
+    monthlyActual: 18,
+    monthPercentage: '-10.00%',
+    ytdTarget: 20,
+    priority: 3,
+    lastUpdated: '2025-02-08',
+  },
+  {
+    key: '4',
+    kpi: 'Hazardous Waste Processed',
+    responsible: 'C. D.',
+    graph: '/graph/hazardous-waste',
+    unit: 'tons',
+    monthlyTarget: 200,
+    monthlyActual: 180,
+    monthPercentage: '-10.00%',
+    ytdTarget: 200,
+    priority: 2,
+    lastUpdated: '2025-02-07',
+  },
+  {
+    key: '5',
+    kpi: 'Plastic Waste Reduction',
+    responsible: 'C. D.',
+    graph: '/graph/plastic-waste-reduction',
+    unit: '%',
+    monthlyTarget: 10,
+    monthlyActual: 12,
+    monthPercentage: '20.00%',
+    ytdTarget: 10,
+    priority: 1,
+    lastUpdated: '2025-02-06',
+  },
+  {
+    key: '6',
+    kpi: 'E-Waste Collected',
+    responsible: 'E. F.',
+    graph: '/graph/e-waste-collected',
+    unit: 'tons',
+    monthlyTarget: 300,
+    monthlyActual: 280,
+    monthPercentage: '-6.67%',
+    ytdTarget: 300,
+    priority: 3,
+    lastUpdated: '2025-02-05',
+  },
+  {
+    key: '7',
+    kpi: 'Water Waste Reduction',
+    responsible: 'E. F.',
+    graph: '/graph/water-waste-reduction',
+    unit: '%',
+    monthlyTarget: 15,
+    monthlyActual: 14,
+    monthPercentage: '-6.67%',
+    ytdTarget: 15,
+    priority: 2,
+    lastUpdated: '2025-02-04',
   },
 ];
 
@@ -206,6 +314,8 @@ const monthsArr: string[] = [
 const Kpis: React.FC = () => {
   const [tasks, setTasks] = useState<DataType[]>(initialTasks);
   const [isTableVisible, setIsTableVisible] = useState<boolean>(true);
+  const [isPlasticTableVisible, setIsPlasticTableVisible] =
+    useState<boolean>(true);
 
   const handleToggleTable = () => {
     setIsTableVisible((prev) => !prev);
@@ -231,7 +341,7 @@ const Kpis: React.FC = () => {
         <div className="flex gap-6 items-center">
           <h6 className="heading-6">KPIs</h6>
           <div className="flex gap-3 items-center m-caption-2">
-            <div className="kpis__date__div">
+            <div className="KPIs__date__div">
               <span className="mr-3 fp-purple-dark-ft">Show KPIs for:</span>
               <DatePicker
                 className="max-w-16 px-1.5 py-[3px] body-3 border border-fp mr-2 rounded-lg"
@@ -264,110 +374,48 @@ const Kpis: React.FC = () => {
         </div>
       </div>
 
-      {isTableVisible && (
-        <div className="mt-2 mx-2 sm:mx-4 md:mx-6 overflow-x-auto scrollbar-thin prioritized__task__table">
-          {/* Header Row */}
-          <div className="flex border-b border-fp">
-            <div className="priorities__task__col table__header__item table__item__border__right after:top-[18px]">
-              Task
-            </div>
-            <div className="priorities__dueDate__col table__header__item table__item__border__right after:top-[18px] flex gap-2.5">
-              <span className="">Due Date</span>
-              <button>
-                <Image src={icons.filterSvg} alt="filter icon" />
-              </button>
-            </div>
-            <div className="priorities__timeRemaining__col table__header__item table__item__border__right after:top-[18px]">
-              Time Remaining
-            </div>
-            <div className="priorities__priority__col table__header__item flex gap-2.5">
-              <span>Priority</span>
-              <button>
-                <Image src={icons.filterSvg} alt="filter icon" />
-              </button>
+      <div className="mt-6">
+        <div className="px-4 py-[15px] mx-6 fp-bg rounded-lg">Plastic</div>
+        {isPlasticTableVisible && (
+          <div className="overflow-x-auto scrollbar-thin scroll-my-4 scroll-mx-6 KPIs__plastic__data__table">
+            {/* header */}
+            <div className="flex border-b border-fp">
+              <div className="KPIs__kpi__col table__header__item table__item__border__right after:top-[18px]">
+                KPI
+              </div>
+              <div className="KPIs__responsible__col table__header__item table__item__border__right after:top-[18px]">
+                Responsible
+              </div>
+              <div className="KPIs__graph__col table__header__item table__item__border__right after:top-[18px]">
+                Graph
+              </div>
+              <div className="KPIs__unit__col table__header__item table__item__border__right after:top-[18px]">
+                Unit
+              </div>
+              <div className="KPIs__monthlyTarget__col table__header__item table__item__border__right after:top-[18px]">
+                Monthly Target
+              </div>
+              <div className="KPIs__monthlyActual__col table__header__item table__item__border__right after:top-[18px]">
+                Monthly Actual
+              </div>
+              <div className="KPIs__monthPercentage__col table__header__item table__item__border__right after:top-[18px]">
+                Month, %
+              </div>
+              <div className="KPIs__YTDTarget__col table__header__item table__item__border__right after:top-[18px]">
+                YTD Target
+              </div>
+              <div className="KPIs__priority__col table__header__item table__item__border__right after:top-[18px]">
+                Priority
+              </div>
+              <div className="KPIs__lastUpdated__col table__header__item">
+                Updated
+              </div>
             </div>
           </div>
+        )}
+      </div>
 
-          {/* Task Rows */}
-          {tasks.map((item) => (
-            <div key={item.key} className="flex border-b border-fp">
-              <div className="priorities__task__col px-4 py-3 flex items-center gap-3 table__item__border__right after:top-[21px]">
-                {item.completed ? (
-                  <CheckCircleFilled
-                    className="text-2xl fp-success-light-ft mr-[1px]"
-                    onClick={() => handleToggleCompletion(item.key)}
-                  />
-                ) : (
-                  <input
-                    type="checkbox"
-                    checked={item.completed}
-                    className="w-[27px] h-6 appearance-none rounded-full border border-[var(--fp-bg)]"
-                    onChange={() => handleToggleCompletion(item.key)}
-                  />
-                )}
-
-                {item.task.link ? (
-                  <Link href={`/${item.task.link}`} className="w-full">
-                    <InputReadOnly
-                      value={item.task.name}
-                      classNames="fp-blue-light-ft underline underline-offset-4 body-2 w-full"
-                    />
-                  </Link>
-                ) : (
-                  <InputReadOnly
-                    value={item.task.name}
-                    classNames="body-2 w-full"
-                  />
-                )}
-              </div>
-
-              <div className="priorities__dueDate__col p-3 table__item__border__right after:top-[21px]">
-                <CustomDatePicker
-                  selectedDate={item.dueDate}
-                  onDateChange={handleDtChange}
-                  classNames="w-24"
-                />
-              </div>
-
-              <div className="priorities__timeRemaining__col p-4 table__item__border__right after:top-[21px]">
-                <div
-                  className={`sb-caption-2 py-[3px] px-2 flex items-center gap-1 max-w-fit rounded-md 
-                  ${item.timeRemaining.time < 0 ? 'fp-danger-bg fp-danger-dark-ft' : 'fp-bg fp-purple-dark-ft'}`}
-                >
-                  <Image
-                    src={icons.clockSvg}
-                    alt="clock"
-                    className={`${item.timeRemaining.time < 0 ? 'red__clock' : ''}`}
-                  />
-                  {item.timeRemaining.time}
-                  {item.timeRemaining.unit}
-                </div>
-              </div>
-
-              <div className="priorities__priority__col p-4">
-                <select
-                  className={`w-fit px-2 py-[3px] sb-caption-2 rounded-md ${
-                    item.priority === 1
-                      ? 'fp-danger-bg fp-danger-dark-ft'
-                      : item.priority === 2
-                        ? 'fp-warning-bg fp-warning-dark-ft'
-                        : 'fp-success-bg fp-success-dark-ft'
-                  }`}
-                >
-                  <option value={item.priority}>
-                    {item.priority === 1
-                      ? 'High'
-                      : item.priority === 2
-                        ? 'Medium'
-                        : 'Low'}
-                  </option>
-                </select>
-              </div>
-            </div>
-          ))}
-          <ShowMore show={5} classNames="pt-2" />
-        </div>
-      )}
+      
     </>
   );
 };
