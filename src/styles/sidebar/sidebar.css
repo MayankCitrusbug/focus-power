@@ -95,6 +95,9 @@
 .ant-menu-submenu-selected > .ant-menu-submenu-title {
   color: var(--fp-blue-light) !important;
 }
+.ant-menu-submenu-arrow {
+  inset-inline-end: 0 !important;
+}
 .ant-menu-light {
   color: var(--fp-purple-dark) !important;
   margin: 16px 0 !important;
@@ -109,4 +112,14 @@
   line-height: 22px;
   text-align: left;
   color: var(--fp-purple-dark) !important;
+}
+
+
+@media (max-width: 767px) {
+  .ant-menu-root {
+    padding: 0 20px !important;
+  }
+  .ant-menu-light {
+    margin: 12px 0 !important;
+  }
 }

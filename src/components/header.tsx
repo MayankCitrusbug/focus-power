@@ -39,7 +39,7 @@ const items: MenuProps['items'] = [
 
 const Header: React.FC = () => {
   return (
-    <header className="py-4 px-10 flex items-center gap-6 justify-end border-b border-fp">
+    <header className="py-3 md:py-4 px-3 sm:px-5 md:px-7 xl:px-10 flex items-center gap-4 sm:gap-6 justify-end border-b border-fp">
       <button>
         <Image src={icons.paperPlaneSvg} alt="messages icon" />
       </button>

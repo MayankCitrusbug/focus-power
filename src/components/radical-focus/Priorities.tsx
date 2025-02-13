@@ -84,7 +84,7 @@ const initialTasks: DataType[] = [
 
 const Priorities: React.FC = () => {
   const [tasks, setTasks] = useState<DataType[]>(initialTasks);
-  const [isTableVisible, setIsTableVisible] = useState<boolean>(true); // State for toggling the table
+  const [isTableVisible, setIsTableVisible] = useState<boolean>(true);
 
   const handleToggleTable = () => {
     setIsTableVisible((prev) => !prev);
@@ -104,9 +104,8 @@ const Priorities: React.FC = () => {
 
   return (
     <>
-      {/* Header Section */}
       <div
-        className={`px-6 py-4 flex justify-between items-center ${isTableVisible ? 'border-b border-fp' : ''}`}
+        className={`px-2 sm:px-4 md:px-6 py-2 md:py-4 flex flex-wrap gap-2 md:gap-6 justify-between items-center ${isTableVisible ? 'border-b border-fp' : ''}`}
       >
         <div className="flex gap-4">
           <button className="min-w-[18px]" onClick={handleToggleTable}>
@@ -117,7 +116,7 @@ const Priorities: React.FC = () => {
           </button>
           <h6 className="heading-6">Prioritized Tasks</h6>
         </div>
-        <div className="flex gap-6">
+        <div className="flex md:gap-6 gap-2 justify-between md:w-fit w-full">
           <div className="flex items-center gap-2">
             <input
               className="w-[18px] h-[18px]"
@@ -138,7 +137,7 @@ const Priorities: React.FC = () => {
       </div>
 
       {isTableVisible && (
-        <div className="mt-2 mx-6 overflow-x-auto prioritized__task__table">
+        <div className="mt-2 mx-2 sm:mx-4 md:mx-6 overflow-x-auto scrollbar-thin prioritized__task__table">
           {/* Header Row */}
           <div className="flex border-b border-fp">
             <div className="priorities__task__col table__header__item table__item__border__right after:top-[18px]">

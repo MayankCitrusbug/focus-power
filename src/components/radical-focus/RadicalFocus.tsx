@@ -9,6 +9,7 @@ import RecurringActivities from './RecurringActivities';
 import Processes from './Processes';
 
 import '../../styles/radical-focus/radical-focus.css';
+import Kpis from './Kpis';
 
 const RadicalFocus: React.FC = () => {
   const [rfSelectedOpt, setRfSelectedOpt] = useState('objectives');
@@ -37,14 +38,16 @@ const RadicalFocus: React.FC = () => {
   return (
     <>
       <RadicalFocusHeader />
-      <div className="pt-2 pb-[14px] px-10">
-        <ul className="flex border-b-2 border-fp overflow-x-auto ">
+
+      {/* menu bar */}
+      <div className="pt-2 pb-2 md:pb-[14px] px-3 sm:px-5 md:px-7 xl:px-10">
+        <ul className="flex border-b-2 border-fp relative z-2 overflow-x-auto scrollbar-thin">
           {radicalFocusItems.map((item) => (
             <li
               key={item.key}
-              className={`p-3 sb-caption-3 flex-shrink-0 cursor-pointer ${
+              className={`p-2 sm:p-3 sb-caption-3 flex-shrink-0 cursor-pointer ${
                 rfSelectedOpt === item.key
-                  ? 'fp-blue-light-ft radical-menu-active-item'
+                  ? 'fp-blue-light-ft radical__menu__active__item'
                   : 'fp-purple-dark-ft'
               }`}
               onClick={() => handleScrollToSection(item.key)}
@@ -55,13 +58,17 @@ const RadicalFocus: React.FC = () => {
         </ul>
       </div>
 
-      <div className="radicalFocus__container">
-        <div className="my-3 mx-10 flex flex-col gap-6">
+      {/* tables */}
+      <div className="radicalFocus__container scrollbar-thin">
+        <div className="my-3 mx-3 sm:mx-5 md:mx-7 xl:mx-10 flex flex-col gap-6">
           <div id="objectives" className="fp-white-bg rounded-xl">
             <Objectives />
           </div>
           <div id="priorities" className="fp-white-bg rounded-xl">
             <Priorities />
+          </div>
+          <div id="kpis" className="fp-white-bg rounded-xl">
+            <Kpis />
           </div>
         </div>
       </div>

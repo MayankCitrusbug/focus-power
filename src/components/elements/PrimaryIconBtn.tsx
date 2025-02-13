@@ -17,7 +17,7 @@ const PrimaryIconBtn: React.FC<PrimaryIconBtnProps> = ({
   return (
     <button
       onClick={onClick}
-      className="sb-caption-2 py-1.5 px-2 rounded-md flex items-center fp-purple-light-bg fp-blue-light-ft"
+      className="sb-caption-2 max-w-fit py-1.5 px-2 rounded-md flex items-center fp-purple-light-bg fp-blue-light-ft"
     >
       <Image className="mr-1" src={icon} alt={alt} />
       {text}
