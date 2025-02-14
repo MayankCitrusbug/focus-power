@@ -21,6 +21,7 @@ import profileDDSvg from './profile-dd.svg'
 import tableDDSvg from './table-dd.svg'
 import tableDdUpSvg from './table-dd-up.svg'
 import filterSvg from './filter.svg'
+import graphSvg from './graph.svg'
 
 export const icons = {
     apertureSvg,
@@ -45,5 +46,6 @@ export const icons = {
     profileDDSvg,
     tableDDSvg,
     tableDdUpSvg,
-    filterSvg
+    filterSvg,
+    graphSvg
 }
