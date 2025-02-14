@@ -41,6 +41,9 @@
   left: 0;
   background: var(--fp-blue-light);
 }
+.fp__border__b {
+  border-bottom: 1px solid var(--fp-border);
+}
 .table__header__item {
   font-size: 12px;
   font-weight: 600;
@@ -63,6 +66,7 @@
   filter: brightness(0) saturate(100%) invert(12%) sepia(96%) saturate(4675%)
     hue-rotate(341deg) brightness(73%) contrast(107%);
 }
+
 
 /* objective */
 
@@ -173,32 +177,7 @@
   min-width: 7%;
   flex-shrink: 0;
 }
-.KPIs__monthlyTarget__col {
-  width: 124px;
-  min-width: 10%;
-  flex-shrink: 0;
-}
-.KPIs__monthlyActual__col {
-  width: 124px;
-  min-width: 10%;
-  flex-shrink: 0;
-}
-.KPIs__monthPercentage__col {
-  width: 124px;
-  min-width: 10%;
-  flex-shrink: 0;
-}
-.KPIs__YTDTarget__col {
-  width: 124px;
-  min-width: 10%;
-  flex-shrink: 0;
-}
-.KPIs__priority__col {
-  width: 124px;
-  min-width: 10%;
-  flex-shrink: 0;
-}
-.KPIs__lastUpdated__col {
+.KPIs__common__col {
   width: 124px;
   min-width: 10%;
   flex-shrink: 0;

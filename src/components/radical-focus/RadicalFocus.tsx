@@ -9,7 +9,7 @@ import RecurringActivities from './RecurringActivities';
 import Processes from './Processes';
 
 import '../../styles/radical-focus/radical-focus.css';
-import Kpis from './Kpis';
+import KPIs from './Kpis';
 
 const RadicalFocus: React.FC = () => {
   const [rfSelectedOpt, setRfSelectedOpt] = useState('objectives');
@@ -68,7 +68,7 @@ const RadicalFocus: React.FC = () => {
             <Priorities />
           </div>
           <div id="kpis" className="fp-white-bg rounded-xl">
-            <Kpis />
+            <KPIs />
           </div>
         </div>
       </div>
