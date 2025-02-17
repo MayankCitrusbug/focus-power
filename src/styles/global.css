@@ -91,6 +91,9 @@ body {
 .fp-white-bg {
   background: var(--fp-white);
 }
+.fp-border-bg {
+  background: var(--fp-border);
+}
 
 /* color */
 

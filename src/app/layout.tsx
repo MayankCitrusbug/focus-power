@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import '../styles/global.css';
+
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
+
+import '../styles/global.css';
 
 export const metadata: Metadata = {
   title: 'Focus Power',
@@ -15,9 +17,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="./favicon.ico" sizes="any" />
-      </head>
       <body className={`font-inter antialiased`}>
         <div className="flex">
           <Sidebar />

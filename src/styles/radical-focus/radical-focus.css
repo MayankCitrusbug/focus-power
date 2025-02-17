@@ -131,21 +131,25 @@
   width: 533px;
   min-width: 55%;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--fp-border);
 }
 .priorities__dueDate__col {
   width: 144px;
   min-width: 15%;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--fp-border);
 }
 .priorities__timeRemaining__col {
   width: 144px;
   min-width: 15%;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--fp-border);
 }
 .priorities__priority__col {
   width: 144px;
   min-width: 15%;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--fp-border);
 }
 
 /* KPIs */
@@ -183,11 +187,76 @@
   flex-shrink: 0;
 }
 
+.KPIs__child__kpi__col {
+  width: 190px;
+  min-width: 16.1%;
+  flex-shrink: 0;
+}
+.KPIs__child__responsible__col {
+  width: 104px;
+  min-width: 9.3%;
+  flex-shrink: 0;
+}
+.KPIs__child__graph__col {
+  width: 68px;
+  min-width: 5.2%;
+  flex-shrink: 0;
+}
+.KPIs__child__unit__col {
+  width: 80px;
+  min-width: 7.2%;
+  flex-shrink: 0;
+}
+.KPIs__child__common__col {
+  width: 124px;
+  min-width: 10.37%;
+  flex-shrink: 0;
+}
+.KPIs__parent__kpi::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--fp-border);
+}
+.KPIs__parent__of__child__KPIs::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 28px;
+  left: -25px;
+  width: 1px;
+  background: var(--fp-border);
+}
+.KPIs__parent__of__child__KPIs::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -50px;
+  right: 0;
+  border-bottom: 1px solid var(--fp-border);
+}
+.KPIs__child__kpi__col::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  left: -25px;
+  border-bottom: 1px solid var(--fp-border);
+  top: 30px;
+}
+
 
 /* media queries */
 
 @media (max-width: 767px) {
   .radicalFocus__container {
     height: calc(100dvh - 185px);
+  }
+}
+
+@media (max-width: 479px) {
+  .radicalFocus__container {
+    height: calc(100dvh - 207px);
   }
 }
