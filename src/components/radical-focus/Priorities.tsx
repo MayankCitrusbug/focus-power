@@ -9,87 +9,20 @@ import InputReadOnly from '../elements/InputReadOnly';
 import PrimaryIconBtn from '../elements/PrimaryIconBtn';
 import CustomDatePicker from '../elements/CustomDatePicker';
 
+import { prioritizedDataArr } from '@/utils/helper';
+
+import { PrioritizedDataType } from '@/types';
 import { icons } from '@/assets/icons';
 
-interface DataType {
-  key: string;
-  completed: boolean;
-  task: {
-    name: string;
-    link?: string;
-  };
-  dueDate: string;
-  timeRemaining: {
-    time: number;
-    unit: 'd' | 'hrs' | 'min';
-  };
-  priority: number;
-}
-
-const initialTasks: DataType[] = [
-  {
-    key: '1',
-    completed: false,
-    task: {
-      name: 'Prepare Marketing Review March - 2022',
-      link: '#',
-    },
-    dueDate: '01.01.2023',
-    timeRemaining: {
-      time: 28,
-      unit: 'd',
-    },
-    priority: 1,
-  },
-  {
-    key: '2',
-    completed: false,
-    task: {
-      name: 'Meet desired customer deadline',
-    },
-    dueDate: '01.01.2023',
-    timeRemaining: {
-      time: -3,
-      unit: 'd',
-    },
-    priority: 2,
-  },
-  {
-    key: '3',
-    completed: true,
-    task: {
-      name: 'Meet desired customer deadline',
-    },
-    dueDate: '01.01.2023',
-    timeRemaining: {
-      time: 2,
-      unit: 'hrs',
-    },
-    priority: 1,
-  },
-  {
-    key: '4',
-    completed: true,
-    task: {
-      name: 'Meet desired customer deadline',
-    },
-    dueDate: '01.01.2023',
-    timeRemaining: {
-      time: 1,
-      unit: 'd',
-    },
-    priority: 3,
-  },
-];
+const initialTasks = prioritizedDataArr();
 
 const Priorities: React.FC = () => {
-  const [tasks, setTasks] = useState<DataType[]>(initialTasks);
+  const [tasks, setTasks] = useState<PrioritizedDataType[]>(initialTasks);
   const [isTableVisible, setIsTableVisible] = useState<boolean>(true);
 
   const handleToggleTable = () => {
     setIsTableVisible((prev) => !prev);
   };
-
   const handleToggleCompletion = (key: string) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -97,7 +30,6 @@ const Priorities: React.FC = () => {
       )
     );
   };
-
   const handleDtChange = () => {
     console.log('date changed');
   };
@@ -139,7 +71,7 @@ const Priorities: React.FC = () => {
       {isTableVisible && (
         <div className="mt-2 mx-2 sm:mx-4 md:mx-6 overflow-x-auto scrollbar-thin prioritized__task__table">
           {/* Header Row */}
-          <div className="flex border-b border-fp">
+          <div className="flex">
             <div className="priorities__task__col table__header__item table__item__border__right after:top-[18px]">
               Task
             </div>
@@ -162,7 +94,7 @@ const Priorities: React.FC = () => {
 
           {/* Task Rows */}
           {tasks.map((item) => (
-            <div key={item.key} className="flex border-b border-fp">
+            <div key={item.key} className="flex">
               <div className="priorities__task__col px-4 py-3 flex items-center gap-3 table__item__border__right after:top-[21px]">
                 {item.completed ? (
                   <CheckCircleFilled

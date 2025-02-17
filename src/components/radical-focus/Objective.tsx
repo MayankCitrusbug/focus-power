@@ -1,6 +1,6 @@
 'use client';
-import Image from 'next/image';
 import { useState } from 'react';
+import Image from 'next/image';
 
 import PrimaryIconBtn from '../elements/PrimaryIconBtn';
 import ProfileDropdown from '../elements/ProfileDropdown';
@@ -9,29 +9,22 @@ import CustomSlider from '../elements/CustomSlider';
 import PrimaryBtn from '../elements/PrimaryBtn';
 import ShowMore from './ShowMore';
 
+import {
+  objectiveDataArr,
+  objectiveParametersArr,
+  objectiveYearsArr,
+} from '@/utils/helper';
+
 import { icons } from '@/assets/icons';
-
-type ObjectiveType = {
-  text: string;
-  selected: boolean;
-};
-
-interface DataType {
-  key: string;
-  objectiveType: string;
-  responsible: string[];
-  division: string;
-  description: string;
-  dueDate: string;
-  progress: number;
-  achieved: string;
-  conditions: string[];
-}
 
 const Objectives: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<{ [key: string]: boolean }>(
     {}
   );
+
+  const objectiveYears = objectiveYearsArr();
+  const objectiveParameters = objectiveParametersArr();
+  const objectiveData = objectiveDataArr();
 
   const handleClick = () => {
     console.log('objectives');
@@ -39,86 +32,12 @@ const Objectives: React.FC = () => {
   const handleDtChange = () => {
     console.log('date changed');
   };
-
   const toggleRow = (key: string) => {
     setExpandedRows((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
-
-  const objectiveYears: ObjectiveType[] = [
-    {
-      text: '2022',
-      selected: true,
-    },
-    {
-      text: '2021',
-      selected: false,
-    },
-    {
-      text: '2020',
-      selected: false,
-    },
-  ];
-
-  const objectiveParameters: ObjectiveType[] = [
-    {
-      text: 'Company',
-      selected: true,
-    },
-    {
-      text: 'Division',
-      selected: true,
-    },
-    {
-      text: 'Individual',
-      selected: true,
-    },
-  ];
-
-  const data: DataType[] = [
-    {
-      key: '1',
-      objectiveType: 'company',
-      division: 'CEO',
-      responsible: ['matilda', 'matilda', 'matilda'],
-      description:
-        'By 2030 we want to be the leader in XXX with only newly launched product line',
-      dueDate: '21.10.2029',
-      progress: 25,
-      achieved: 'Objective is achieved when',
-      conditions: [
-        'We have companyX as client',
-        'We are larger than competitorY',
-        'We have grown more than 30% in revenue',
-      ],
-    },
-    {
-      key: '2',
-      objectiveType: 'division',
-      division: 'Sales',
-      responsible: ['matilda', 'matilda'],
-      description:
-        'By 2030 we want to be the leader in XXX with only newly launched product line',
-      dueDate: '21.10.2029',
-      progress: 25,
-      achieved: 'Objective is achieved when',
-      conditions: ['We have expanded into regionZ', 'Revenue has grown by 20%'],
-    },
-    {
-      key: '3',
-      objectiveType: 'division',
-      division: 'Sales',
-      responsible: ['matilda', 'matilda'],
-      description:
-        'By 2030 we want to be the leader in XXX with only newly launched product line',
-      dueDate: '21.10.2029',
-      progress: 25,
-      achieved: 'Objective is achieved when',
-      conditions: ['We have expanded into regionZ', 'Revenue has grown by 20%'],
-    },
-  ];
 
   return (
     <>
@@ -184,7 +103,7 @@ const Objectives: React.FC = () => {
 
         {/* Rows */}
         <div className="flex flex-col gap-1">
-          {data.map((item, index) => (
+          {objectiveData.map((item, index) => (
             <div key={index}>
               <div className="flex">
                 <div className="objective__type__col px-4 py-3 flex items-start gap-2 table__item__border__right after:top-6 fp-bg rounded-tl-md rounded-bl-md">
@@ -279,7 +198,7 @@ const Objectives: React.FC = () => {
             </div>
           ))}
         </div>
-        <ShowMore show={5} classNames="pt-4" />
+        <ShowMore show={5} classNames="pt-2 sm:pt-4" />
       </div>
     </>
   );
