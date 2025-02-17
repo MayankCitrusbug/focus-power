@@ -7,7 +7,10 @@ import '../styles/global.css';
 
 export const metadata: Metadata = {
   title: 'Focus Power',
-  description: 'Focus Power Radial Focus',
+  description: 'Focus Power - Radial Focus',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

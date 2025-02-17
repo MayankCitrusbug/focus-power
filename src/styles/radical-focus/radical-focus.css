@@ -141,7 +141,7 @@
 }
 .priorities__timeRemaining__col {
   width: 144px;
-  min-width: 15%;
+  min-width: 14%;
   flex-shrink: 0;
   border-bottom: 1px solid var(--fp-border);
 }

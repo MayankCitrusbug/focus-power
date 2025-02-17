@@ -60,7 +60,7 @@ const RadicalFocus: React.FC = () => {
 
       {/* tables */}
       <div className="radicalFocus__container scrollbar-thin">
-        <div className="my-3 mx-3 sm:mx-5 md:mx-7 xl:mx-10 flex flex-col gap-6">
+        <div className="my-3 mx-3 sm:mx-5 md:mx-7 xl:mx-10 flex flex-col gap-2 sm:gap:4 md:gap-6">
           <div id="objectives" className="fp-white-bg rounded-xl">
             <Objectives />
           </div>

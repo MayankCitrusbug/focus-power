@@ -48,7 +48,7 @@ const Priorities: React.FC = () => {
           </button>
           <h6 className="heading-6">Prioritized Tasks</h6>
         </div>
-        <div className="flex md:gap-6 gap-2 justify-between md:w-fit w-full">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-6 justify-between md:w-fit w-full">
           <div className="flex items-center gap-2">
             <input
               className="w-[18px] h-[18px]"

@@ -234,4 +234,25 @@ body {
   .heading-4 {
     font-size: 18px;
   }
+  .heading-5 {
+    font-size: 16px;
+  }
+  .heading-6 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 479px) {
+  .heading-4 {
+    font-size: 16px;
+  }
+  .heading-5 {
+    font-size: 15px;
+  }
+  .heading-6 {
+    font-size: 14px;
+  }
+  .m-caption-1, .sb-caption-1, .sb-caption-3, .sb-caption-4, .body-2 {
+    font-size: 13px;
+  }
 }

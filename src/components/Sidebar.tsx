@@ -174,7 +174,7 @@ const Aside: React.FC = () => {
           ))}
         </ul>
       </div>
-      <Layout className='absolute lg:static left-14 md:left-16 z-10 h-dvh fp-white-bg'>
+      <Layout className="absolute lg:static left-14 md:left-16 z-10 h-dvh fp-white-bg">
         <Sider
           collapsible
           theme="light"
@@ -184,10 +184,12 @@ const Aside: React.FC = () => {
           width={siderWidth}
           className={collapsed ? 'sider-collapsed' : 'sider-expanded'}
         >
-          <div className="demo-logo-vertical relative">
+          <div className="relative">
             <h5
               className={`border-b border-fp ${
-                collapsed ? 'hidden' : 'px-5 md:px-6 py-[14px] md:py-[18px] heading-5'
+                collapsed
+                  ? 'hidden'
+                  : 'px-5 md:px-6 py-[14px] md:py-[18px] heading-5'
               }`}
             >
               {menuContent[selectedKey]?.title || 'Default Menu'}
@@ -204,36 +206,40 @@ const Aside: React.FC = () => {
             </button>
           </div>
 
-          {!collapsed && (
-            <div className="sb-caption-2 fp-purple-medium-ft mx-5 md:mx-6  mt-5 md:mt-6">
-              {menuContent[selectedKey].infoText}
-            </div>
-          )}
-          {!collapsed && (
-            <Menu
-              defaultSelectedKeys={['report-0']}
-              mode="inline"
-              items={items}
-            />
-          )}
+          <div className="flex flex-col h-full overflow-y-auto scrollbar-thin">
+            <div>
+              {!collapsed && (
+                <div className="sb-caption-2 fp-purple-medium-ft mx-5 md:mx-6 mt-5 md:mt-6">
+                  {menuContent[selectedKey].infoText}
+                </div>
+              )}
+              {!collapsed && (
+                <Menu
+                  defaultSelectedKeys={['report-0']}
+                  mode="inline"
+                  items={items}
+                />
+              )}
 
-          {!collapsed && menuContent[selectedKey].action && (
-            <div className="mx-4">
-              <button
-                className="fp-purple-light-bg fp-blue-light-ft sb-caption-1 p-[9px] rounded-lg flex items-center justify-center w-full"
-                onClick={menuContent[selectedKey].action.onClick}
-              >
-                <PlusOutlined className="mr-1.5 text-lg" />
-                {menuContent[selectedKey].action.btnText}
-              </button>
+              {!collapsed && menuContent[selectedKey].action && (
+                <div className="mx-4">
+                  <button
+                    className="fp-purple-light-bg fp-blue-light-ft sb-caption-1 p-[9px] rounded-lg flex items-center justify-center w-full"
+                    onClick={menuContent[selectedKey].action.onClick}
+                  >
+                    <PlusOutlined className="mr-1.5 text-lg" />
+                    {menuContent[selectedKey].action.btnText}
+                  </button>
+                </div>
+              )}
             </div>
-          )}
 
-          {!collapsed && menuContent[selectedKey].footer && (
             <div className="mt-auto">
-              {menuContent[selectedKey].footer?.content}
+              {!collapsed &&
+                menuContent[selectedKey].footer &&
+                menuContent[selectedKey].footer?.content}
             </div>
-          )}
+          </div>
         </Sider>
       </Layout>
     </div>
